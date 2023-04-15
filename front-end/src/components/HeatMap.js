@@ -2,6 +2,24 @@ import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import zipcodeData from '../resource/laZipcode.geojson'
+const d_count = [
+  { 'district': 7, count: 4270 },
+  { 'district': 15, count: 4951 },
+  { 'district': 9, count: 5131 },
+  { 'district': 8, count: 5636 },
+  { 'district': 12, count: 7541 },
+  { 'district': 1, count: 7789 },
+  { 'district': 6, count: 7968 },
+  { 'district': 2, count: 9119 },
+  { 'district': 3, count: 9970 },
+  { 'district': 10, count: 11819 },
+  { 'district': 13, count: 12584 },
+  { 'district': 14, count: 13458 },
+  { 'district': 11, count: 13531 },
+  { 'district': 4, count: 15312 },
+  { 'district': 5, count: 16834 }
+]
+
 
 function HeatMap({ selectedDistrict, setSelectedDistrict }) {
     const mapRef = useRef(null);

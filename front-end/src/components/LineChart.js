@@ -10,8 +10,9 @@ function LineChart({ district }) {
 
   useEffect(() => {
     axios.get(API_Change_Ratio(district)).then(res => {
-      console.log(res);
+      // console.log(res);
       const data = res.data
+      // console.log(data.time)
       const newOption = {
         grid: { top: 20, right: 40, bottom: 20, left: 40 },
         xAxis: {
@@ -21,13 +22,13 @@ function LineChart({ district }) {
         yAxis: {
           type: "value"
         },
-        series: data.industris.map( industris => {
+        tooltip: {
+          trigger: 'axis'
+        },
+        series: data.industries.map( industry => {
           return {
-            name: industris.name,
-            data: industris.data.map(value => {
-              const randomNum = Math.floor(Math.random() * 9) + 1; // generate a random number between 1 and 9
-              return value * randomNum; // multiply the data value by the random number
-            }),
+            name: industry.code,
+            data: industry.change_rate,
             type: "line",
             smooth: true
           }

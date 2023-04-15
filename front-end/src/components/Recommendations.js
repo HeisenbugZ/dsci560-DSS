@@ -10,7 +10,7 @@ function Recommendations({ district }) {
   useEffect(() => {
     const url = API_Recommendations(district)
     axios.get(url).then(res => {
-      // console.log(res)
+      console.log(res)
       const recommands = res.data.recommandations
       // console.log(recommands)
       const sortedIndustries = recommands.sort((a, b) => a.rank - b.rank);

@@ -8,12 +8,12 @@ function MoreInfo( { naics } ) {
     const [info, setInfo] = useState({})
     
     const showModal = () => {
-      setIsModalOpen(true);
       const url = API_IndustryInfo(naics)
       axios.get(url).then(res => {
         // console.log(res)
         setInfo(res.data);
       })
+      setIsModalOpen(true);
 
     };
   
@@ -24,6 +24,7 @@ function MoreInfo( { naics } ) {
     const handleCancel = () => {
       setIsModalOpen(false);
     };
+
     // 访问太快 后端撑不住哈哈哈哈哈
     // useEffect(() => {
     //   const url = base+'description?code=' + naics
