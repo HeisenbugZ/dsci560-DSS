@@ -27,7 +27,7 @@ function LineChart({ district }) {
         },
         series: data.industries.map( industry => {
           return {
-            name: industry.code,
+            name: industry.name,
             data: industry.change_rate,
             type: "line",
             smooth: true

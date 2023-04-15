@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import districtsData from '../resource/laCouncilDistricts.json';
+import '../styles/HeatMap.css'
 
 const d_count = {
   '1': 7789,
@@ -41,14 +42,14 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
       function layerStyle(district) {
         return {
           color:
-              select === district
+            selectedDistrict === district
                 ? "red"
-                : "#000",
-            weight: 2,
-            opacity: 0.7,
-            dashArray: "3",
-            fillOpacity:
-              select === district ? 0.5 : 0.1,
+                : getHeatColore(d_count[district]),
+          weight: 2,
+          opacity: 0.7,
+          dashArray: "3",
+          fillOpacity:
+            selectedDistrict === district ? 0.5 : 1,
         }
       }
       
@@ -73,24 +74,37 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
             ,
             onEachFeature: (district, layer) => {
               layer.bindPopup(district.properties.dist_name);
+
               layer.on({
+                // click: () => {
+                //   districtLayers.eachLayer(function(layer) {
+                //     if (layer.options.className === select) {
+                //       layer.setStyle(layerStyle(null))
+                //     }
+                //   })
+                //   // alert(select)
+                //   if (select === district.properties.district) {
+                //     setSelectedDistrict("LA");
+                //     select = "LA";
+                //     // layer.bindPopup(district.properties.dist_name);
+                //   }else{
+                //     layer.setStyle(layerStyle(select));
+                //     setSelectedDistrict(district.properties.district);
+                //     select = district.properties.district;
+                //   }
+                  
+                // },
                 click: () => {
                   districtLayers.eachLayer(function(layer) {
                     if (layer.options.className === select) {
-                      layer.setStyle(layerStyle(null))
+                      layer.setStyle(layerStyle(select))
                     }
                   })
-                  // alert(select)
-                  if (select === district.properties.district) {
-                    setSelectedDistrict("LA");
-                    select = "LA";
-                    // layer.bindPopup(district.properties.dist_name);
-                  }else{
-                    layer.setStyle(layerStyle(select));
-                    setSelectedDistrict(district.properties.district);
-                    select = district.properties.district;
-                  }
-                  
+                  select = district.properties.district;
+                  layer.setStyle(layerStyle(district.properties.district));
+                  // select = district
+                  // setSelectedDistrict(district.properties.district);
+
                 },
                 mouseover: (event) => {
                   const layer = event.target
@@ -104,7 +118,6 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
                 mouseout: (event) => {
                   const layer = event.target
                   layer.setStyle(layerStyle(layer.options.className));
-
                 },
               });
             },
@@ -117,7 +130,7 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
       }
     }, [map, selectedDistrict, setSelectedDistrict]);
   
-    return <div ref={mapRef} style={{ height: "100%", width: "70%" }} />;
+    return <div ref={mapRef} className="map-container" />;
   }
   
 
