@@ -47,7 +47,8 @@ def recommandation():
     # {"recommandations": [
     #    {"name": string,
     #     "code": int,
-    #     "ratio": float, "net_increase" "rank": int},
+    #     "ratio": float,
+    #     "net_increase", "rank": int},
     #    ...
     # ]}
 

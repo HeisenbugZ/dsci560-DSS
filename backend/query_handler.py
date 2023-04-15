@@ -29,42 +29,56 @@ def description_sql(query: bytes) -> str:
         return f"select * from industry where code={query['code']}"
 
 def recommendation_sql(query: bytes) -> str:
+    froms = "from (predict right JOIN industry on predict.code = industry.code)"
+    where = "where 1 "
+    group = ""
+    order = "ORDER BY increase_ratio desc limit 5"
     if ('district' not in query): return ";"
-    elif (query["district"]=='LA'): return f"""
-        select name, predict.code, sum(net_increase) AS net_increase, sum(net_increase)/sum(`value`)*100  AS increase_ratio
-        from (predict right JOIN industry on predict.code = industry.code)
-        GROUP BY predict.code, name
-        ORDER BY increase_ratio desc limit 5
-        """
-    else: return f"select name, predict.code, net_increase, increase_ratio   \
-        from (predict right JOIN industry on predict.code = industry.code)  \
-        where district={query['district']} \
-        ORDER BY increase_ratio desc limit 5"
+    elif (query["district"]=='LA'):
+        select = "name, predict.code, sum(net_increase) AS net_increase, sum(net_increase)/sum(`value`)*100  AS increase_ratio"
+        group = "GROUP BY predict.code, name"
+    else:
+        select = "name, predict.code, net_increase, increase_ratio"
+        where += f"and district={str(query['district'])}"
+    return f"select {select} {froms} {where} {group} {order}"
 
 def trend_sql(query: bytes) -> str:
-    sql = "SELECT date, code, active, close, net_change, change_rate from per_year_pred "
-    order = "order by code, date"
-    if ('district' not in query): return ";"
-    where = f"where district={query['district']} "
+    select = ""
+    order = "order by code, date "
+    froms = "from per_year_pred right join total_rank on per_year_pred.code=total_rank.code"
+    where = "where 1 "
+    group = ""
     if ('start' in query): where += f"and date>='{query['start']}' "
     if ('end' in query): where += f"and date<='{query['end']}' "
-    return sql + where + order
 
-def trend_data_process(data: Data) -> str:
-    if not len(data.columns): return "[]"
-    date = sorted(list(set(data["date"])))
-    df = pd.DataFrame(data._Data__data, columns=data.columns)
-    df = df.groupby(["code"]).agg(list).reset_index()
-    data = Data(df.columns, df.values)
-    data.drop("date")
-    return '{' + f''' "time": {json.dumps(date)},
-                      "industries": {data.json()} ''' +'}'
+    if ('district' not in query): return ";"
+    elif (query["district"] != "LA") :
+        select = "name, per_year_pred.date, per_year_pred.code, active, close, net_change, change_rate, ranky"
+        where += f"and district={query['district']} "
+    else:
+        select ="name, per_year_pred.date, per_year_pred.code, sum(active) as active,\
+            sum(close) as close, sum(net_change) as net_change, sum(net_change)/sum(close) as change_rate, ranky"
+        group = "group by per_year_pred.code, per_year_pred.date, name "
+
+    return f"SELECT {select} {froms} " + where + group + order
+
 
 def api_node_sql_2(query: bytes) -> str: ...
 def api_node_sql_3(query: bytes) -> str: ...
 ...
 ...
-def api_node_sql_n(query: bytes) -> str: ...
+
+
+def trend_data_process(data: Data) -> str:
+    if not len(data.columns): return "[]"
+    data.rename("ranky", "rank");
+    date = sorted(list(set(data["date"])))
+    df = pd.DataFrame(data._Data__data, columns=data.columns)
+    df = df.groupby(["code", "name", "rank"]).agg(list).reset_index()
+    data = Data(df.columns, df.values)
+    data.drop("date")
+    return '{' + f''' "time": {json.dumps(date)},
+                      "industries": {data.json()} ''' +'}'
 
 
 def api_node_data_proc_1(data: Data) -> Data: ...
