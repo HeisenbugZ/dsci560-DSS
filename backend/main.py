@@ -82,9 +82,12 @@ def ratio():
     return redirect(url_for(".trend", **request.args));
 
 
-@app.route("/economic")
-def eco():
-    return
+@app.route("/active_pred") # accept: {}
+def active_pred():
+    sql = active_pred_sql();
+    data = db.query(sql);
+    return json.dumps(dict(data._Data__data))
+    # return data.json()
 
 @app.route("/anynode")  # accept: {**kwargs: any}
 def node():

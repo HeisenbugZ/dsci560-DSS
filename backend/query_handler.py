@@ -62,6 +62,10 @@ def trend_sql(query: bytes) -> str:
 
     return f"SELECT {select} {froms} " + where + group + order
 
+def active_pred_sql() ->str:
+    return """select district, sum(value) as total from predict
+                group by district
+                ORDER BY district"""
 
 def api_node_sql_2(query: bytes) -> str: ...
 def api_node_sql_3(query: bytes) -> str: ...
