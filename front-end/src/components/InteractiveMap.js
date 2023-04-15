@@ -3,6 +3,34 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import districtsData from '../resource/laCouncilDistricts.json';
 
+const d_count = {
+  '1': 7789,
+  '2': 9119,
+  '3': 9970,
+  '4': 15312,
+  '5': 16834,
+  '6': 7968,
+  '7': 4270,
+  '8': 5636,
+  '9': 5131,
+  '10': 11819,
+  '11': 13531,
+  '12': 7541,
+  '13': 12584,
+  '14': 13458,
+  '15': 4951
+}
+
+function getHeatColore(d) {
+  return d < 5000  ? '#ffffe5':
+         d < 7000  ? '#fff7bc':
+         d < 10000 ? '#fee391':
+         d < 12000 ? '#fec44f':
+         d < 13000 ? '#fe9929':
+         d < 15000 ? '#ec7014':
+                     '#8c2d04';
+}
+
 function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
     const mapRef = useRef(null);
     const [map, setMap] = useState(null);
