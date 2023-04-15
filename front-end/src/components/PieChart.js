@@ -12,7 +12,7 @@ function PieChart({ district }) {
       const data = res.data
       const pie_data = data.industries.map( item => {
         return {
-          name: item.code,
+          name: item.name,
           value: item.active.slice(-1)[0],
         }
       })
@@ -45,10 +45,8 @@ function PieChart({ district }) {
   
   return (
     <div className='pieChart'>
-      {/* <h3>Pie Chart for {`District ${district}`}</h3> */}
       <ReactEcharts
         option={option}
-        // style={{ width: "100%", height: "100%" }}
       ></ReactEcharts>
     </div>
   );

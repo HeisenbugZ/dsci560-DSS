@@ -1,11 +1,5 @@
-/* Map container styles */
-/* Map container styles */
 .map-container {
-    height: 600px;
-  }
-  
-  /* District shape styles */
-  .district-shape {
-    cursor: pointer;
-  }
+  height: 100%;
+  width: 60%;
+}
   
