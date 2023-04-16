@@ -22,7 +22,7 @@ const d_count = {
   '15': 4951
 }
 
-function getHeatColore(d) {
+function getHeatColor(d) {
   return d < 5000  ? '#ffffe5':
          d < 7000  ? '#fff7bc':
          d < 10000 ? '#fee391':
@@ -38,20 +38,32 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
     
   
     useEffect(() => {
+
       let select = selectedDistrict
+
       function layerStyle(district) {
         return {
-          color:
-            selectedDistrict === district
+          fillColor:
+              select === district
                 ? "red"
-                : getHeatColore(d_count[district]),
+                : getHeatColor(d_count[district]),
           weight: 2,
-          opacity: 0.7,
+          opacity: 0.3,
           dashArray: "3",
+          color: 'black',
           fillOpacity:
-            selectedDistrict === district ? 0.5 : 1,
+            select === district ? 0.5 : 0.7,
         }
       }
+
+      const HighlightStyle = {
+          fillColor: "red",
+          color: 'blredack',
+          weight: 10,
+          opacity: 0.5,
+          fillOpacity: 0.5,
+      }
+      
       
       if (!map) {
         const newMap = L.map(mapRef.current, {
@@ -63,9 +75,39 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
           attribution:
             'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
         }).addTo(newMap);
+
+        // 注释栏
+        const legend = L.control({ position: "bottomleft" });
+
+        legend.onAdd = () => {
+          const div = L.DomUtil.create("div", "info legend");
+          const grades = [0, 5000, 7000, 10000, 12000, 13000, 15000];
+          let labels = ['<p>Number of Active business</p>'];
+          let from;
+          let to;
+
+          for (let i = 0; i < grades.length; i++) {
+            from = grades[i];
+            to = grades[i + 1];
+            labels.push(
+              '<i style="background:' +
+                getHeatColor(from + 1) +
+                '"></i> ' +
+                from +
+                (to ? "&ndash;" + to : "+")
+            );
+          }
+
+          div.innerHTML = labels.join("<br>");
+          return div;
+        };
+        legend.addTo(newMap);
+          
         
+        
+        // 街区图层 组
         const districtLayers = L.layerGroup();
-  
+          
         districtsData.features.forEach((district) => {
           const districtPolygon = L.geoJSON(district, {
             style: layerStyle(district.properties.district)
@@ -74,46 +116,33 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
             ,
             onEachFeature: (district, layer) => {
               layer.bindPopup(district.properties.dist_name);
-
               layer.on({
-                // click: () => {
-                //   districtLayers.eachLayer(function(layer) {
-                //     if (layer.options.className === select) {
-                //       layer.setStyle(layerStyle(null))
-                //     }
-                //   })
-                //   // alert(select)
-                //   if (select === district.properties.district) {
-                //     setSelectedDistrict("LA");
-                //     select = "LA";
-                //     // layer.bindPopup(district.properties.dist_name);
-                //   }else{
-                //     layer.setStyle(layerStyle(select));
-                //     setSelectedDistrict(district.properties.district);
-                //     select = district.properties.district;
-                //   }
-                  
-                // },
                 click: () => {
+                  
                   districtLayers.eachLayer(function(layer) {
                     if (layer.options.className === select) {
-                      layer.setStyle(layerStyle(select))
+                      const pre_select = select
+                      select = "benbi" //这是一个笨逼方法 来解决颜色赋值问题 不要尝试理解
+                      layer.setStyle(layerStyle(layer.options.className))
+                      select = pre_select
                     }
                   })
-                  select = district.properties.district;
-                  layer.setStyle(layerStyle(district.properties.district));
-                  // select = district
-                  // setSelectedDistrict(district.properties.district);
-
+                  
+                  // alert(select)
+                  if (select === district.properties.district) {
+                    setSelectedDistrict("LA");
+                    select = "LA";
+                    // layer.bindPopup(district.properties.dist_name);
+                  }else{
+                    layer.setStyle(layerStyle(select));
+                    setSelectedDistrict(district.properties.district);
+                    select = district.properties.district;
+                  }
+                  
                 },
                 mouseover: (event) => {
                   const layer = event.target
-                  layer.setStyle({
-                    color: "red",
-                    weight: 3,
-                    opacity: 0.7,
-                    fillOpacity: 0.5,
-                  });
+                  layer.setStyle(HighlightStyle);
                 },
                 mouseout: (event) => {
                   const layer = event.target
@@ -126,6 +155,8 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
           districtLayers.addLayer(districtPolygon);
         });
         districtLayers.addTo(newMap)
+
+
         setMap(newMap);
       }
     }, [map, selectedDistrict, setSelectedDistrict]);
@@ -133,5 +164,4 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
     return <div ref={mapRef} className="map-container" />;
   }
   
-
 export default InteractiveMap;
