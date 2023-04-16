@@ -30,14 +30,15 @@ class DataBase:
         self.__is_alive = True
 
     def __query(self, query_string: str, fetch_length: int = -1) -> Tuple[tuple]:
-        self.__call_count += 1
         try:
             self.__cursor.execute(query=query_string)
             self.__last_status = 0;
+            self.__call_count = 0;
         except Exception as e:
             print(f"Warning: {e.args[0]} - {e.args[1]}")
             self.__last_status = e.args[0];
             if (e.args[0] == 2006 and self.__call_count<3):
+                self.__call_count += 1
                 print("Reconnecting...")
                 self.__cursor.close()
                 self.__new_conn()
