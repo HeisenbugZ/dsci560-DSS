@@ -15,6 +15,11 @@ function LineChart({ district }) {
       // console.log(data.time)
       const newOption = {
         grid: { top: 20, right: 40, bottom: 20, left: 40 },
+        title: {
+          text: 'Active Business Quarterly Growth Rate during Periods',
+          // subtext: '纯属虚构',
+          left: 'center'
+        },
         xAxis: {
           type: "category",
           data: data.time
@@ -23,7 +28,8 @@ function LineChart({ district }) {
           type: "value"
         },
         tooltip: {
-          trigger: 'axis'
+          trigger: 'axis',
+          // formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         series: data.industries.map( industry => {
           return {

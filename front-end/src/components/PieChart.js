@@ -33,7 +33,7 @@ function PieChart({ district }) {
           formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         series: {
-          name: "industries",
+          name: "Industry",
           data: pie_data,
           type: "pie",
           smooth: true

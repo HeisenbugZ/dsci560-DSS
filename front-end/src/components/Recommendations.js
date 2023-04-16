@@ -21,7 +21,7 @@ function Recommendations({ district }) {
   
   return (
     <div className='recommendation'>
-      <h3 className='recHeader'>Top 5 Industries Recommendations for startup:</h3>
+      <h3 className='recHeader'>Top 5 Industries Recommendations for startup in {district === "LA" ? district : 'District '+ district}:</h3>
       <ul className='recUl'>
       {recommendations.map(industry => {
         return <div className='industry' key={industry.rank}>

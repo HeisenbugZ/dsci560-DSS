@@ -7,10 +7,10 @@ import '../styles/Sider.css'
 function SideDashboard({ selectedDistrict }) {
   return (
     <div className='sider-container'>
-      <h2 className='dashHeader'>{selectedDistrict === "LA" ? 
+      {/* <h2 className='dashHeader'>{selectedDistrict === "LA" ? 
         "Dashboard (LA)" : 
         `Dashboard (District ${selectedDistrict})`}
-      </h2>
+      </h2> */}
       <Recommendations district={selectedDistrict} />
       <LineChart district={selectedDistrict} />
       <PieChart district={selectedDistrict} />
