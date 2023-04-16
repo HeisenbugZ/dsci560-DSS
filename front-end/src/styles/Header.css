@@ -1,0 +1,57 @@
+.header {
+    height: 10%;
+    width: 100%;
+    /* background-color:rgb(244,240,232); */
+    box-shadow: 1px 1px 1px rgba(202, 202, 202, 0.7)
+    /* border-bottom: 1px solid #DDDDDD;
+    display: flex;
+    flex-direction: row; */
+}
+.headerContainer{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.headerContainer p{
+    font-size:1.8vh;
+}
+
+.logo{
+    width: 10vh;
+    height: 10vh;
+}
+
+.mainHeader{
+    height: 100%;
+    width: 82%;
+    font-size:2.5vh;
+    font-weight: bold;
+    /* vertical-align: middle; */
+    font-family: Tahoma;
+    color:rgb(202, 0, 0);
+    padding-left: 2rem;
+    padding-right: 20rem;
+
+    /* flex-grow: 4 */
+    /* text-shadow:#f3f3f3 1px 1px 0px, #b2b2b2 1px 2px 0; */
+    /* margin-top: 0.5rem; */
+    /* padding-top: 1rem;
+    padding-bottom: 1rem; */
+
+    /* margin-left: 2rem; */
+    
+}
+
+.dataSource{
+    height: 100%;
+    width: 18%;
+    text-align: left;
+    
+    /* padding-top: 4rem; */
+    /* padding-right: 1rem; */
+}
