@@ -10,12 +10,18 @@ export function API_Recommendations ( district ) {
   return base + 'recommandation?district=' + district
 };
 
-export function API_Active_Business ( district, from, to ) {
+export function API_Active_Business ( district, star, end ) {
   return base + 'active_data?district=' + district
 }
 
-export function API_Change_Ratio (district, from, to ) {
-  return base + "change_ratio?district=" + district
+export function API_Change_Ratio (district, start=null, end=null ) {
+  return base + "change_ratio?district=" + district 
+          + (start ? `&start=${start}` : "")
+          + (end ? `&start=${end}` : "");
+}
+
+export function API_Prediction() {
+  return base + 'active_pred'
 }
 
 // openAPI
