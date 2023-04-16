@@ -54,9 +54,10 @@ def recommandation():
 
 
 @app.route("/active_data")
-# accept: {district: int, start: optional("yyyy"| "yyyy/q" | undefined),
-#                         end: option("yyyy"| "yyyy/q" | undefined)}
-# url = domain/active_data?district=1&startTime=2015%2F1&endTime=2018%2F2
+# accept: {district: int, num: int,
+#           start: optional("yyyy"| "yyyy/q" | undefined),
+#           end: option("yyyy"| "yyyy/q" | undefined)}
+# url = domain/active_data?district=1&startTime=2015%2F1&endTime=2018%2F2&num=5
 def trend():
     sql = trend_sql(request.args)
     data = db.query(sql)
@@ -82,9 +83,9 @@ def ratio():
     return redirect(url_for(".trend", **request.args));
 
 
-@app.route("/active_pred") # accept: {}
+@app.route("/active_pred") # accept: {num: int}
 def active_pred():
-    sql = active_pred_sql();
+    sql = active_pred_sql(request.args);
     data = db.query(sql);
     return json.dumps(dict(data._Data__data))
     # return data.json()

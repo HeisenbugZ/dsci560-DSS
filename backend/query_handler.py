@@ -50,6 +50,7 @@ def trend_sql(query: bytes) -> str:
     group = ""
     if ('start' in query): where += f"and date>='{query['start']}' "
     if ('end' in query): where += f"and date<='{query['end']}' "
+    if ('num' in query): where += f"and ranky <= {query['num']} "
 
     if ('district' not in query): return ";"
     elif (query["district"] != "LA") :
@@ -60,12 +61,13 @@ def trend_sql(query: bytes) -> str:
             sum(close) as close, sum(net_change) as net_change, sum(net_change)/sum(close) as change_rate, ranky"
         group = "group by per_year_pred.code, per_year_pred.date, name "
 
-    return f"SELECT {select} {froms} " + where + group + order
+    return f"SELECT {select} {froms} {where} {group} {order};"
 
-def active_pred_sql() ->str:
+def active_pred_sql(query: bytes) ->str:
     return """select district, sum(value) as total from predict
                 group by district
                 ORDER BY district"""
+
 
 def api_node_sql_2(query: bytes) -> str: ...
 def api_node_sql_3(query: bytes) -> str: ...
