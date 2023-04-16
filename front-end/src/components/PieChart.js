@@ -7,7 +7,7 @@ import '../styles/Sider.css'
 function PieChart({ district }) {
   const [option, setOption] = useState({});
   useEffect(() => {
-    axios.get(API_Active_Business(district,null,'2022',)).then(res => {
+    axios.get(API_Active_Business(district,null,'2022',10)).then(res => {
       // console.log(res);
       const data = res.data
       const pie_data = data.industries.map( item => {

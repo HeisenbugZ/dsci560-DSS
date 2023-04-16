@@ -9,7 +9,7 @@ function LineChart({ district }) {
   const [option, setOption] = useState({});
 
   useEffect(() => {
-    axios.get(API_Change_Ratio(district, '2020')).then(res => {
+    axios.get(API_Change_Ratio(district, '2020',null, 10)).then(res => {
       // console.log(res);
       const data = res.data
       // console.log(data.time)
