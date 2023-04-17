@@ -17,7 +17,7 @@ function PieChart({ district }) {
         }
       })
       const newOption = {
-        grid: { top: 20, right: 40, bottom: 20, left: 40 },
+        grid: { top: 20, right: 40, bottom: 10, left: 40 },
         // legend: {
         //   type: 'scroll',
         //   orient: 'vertical',

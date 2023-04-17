@@ -14,12 +14,21 @@ function LineChart({ district }) {
       const data = res.data
       // console.log(data.time)
       const newOption = {
-        grid: { top: 20, right: 40, bottom: 20, left: 40 },
+        grid: { top: 40, right: 40, bottom: 30, left: 40 },
         title: {
           text: 'Active Business Quarterly Growth Rate during Periods',
-          // subtext: '纯属虚构',
-          left: 'center'
+          // subtext: '',
+          left: 'center',
+          textStyle: {
+            fontSize: 16,
+            fontStyle: "normal",
+            fontWeight: "lighter",
+            fontFamily: "Arial",
+            color: "rgba(0, 0, 0, 1)",
+          },
+          padding:[10,10,10,10],
         },
+        
         xAxis: {
           type: "category",
           data: data.time

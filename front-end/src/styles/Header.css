@@ -18,7 +18,7 @@
 }
 
 .headerContainer p{
-    font-size:1.8vh;
+    font-size:1.5vh;
 }
 
 .logo{
@@ -49,9 +49,19 @@
 
 .dataSource{
     height: 100%;
-    width: 18%;
+    width: 25%;
     text-align: left;
     
-    /* padding-top: 4rem; */
+    padding-top: 3rem;
     /* padding-right: 1rem; */
+}
+a:link {
+    color: rgb(42, 131, 255);
+    text-decoration: none;
+  }
+  a:visited {
+    color: rgb(42, 131, 255);
+  }
+a:active {
+  color: blueviolet;
 }
