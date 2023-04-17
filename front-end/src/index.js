@@ -15,7 +15,7 @@ function App() {
           <Route path="/map" element={ <MapPage
                                           selectedDistrict={selectedDistrict}
                                           setSelectedDistrict={setSelectedDistrict}/> }/>
-          <Route path="/chat" element={ChatGPT} />
+          <Route path="/chat" element={<ChatGPT />} />
       </Routes>
     </BrowserRouter>
   );

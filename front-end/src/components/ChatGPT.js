@@ -20,7 +20,8 @@ function ChatGPT() {
           Authorization: `Bearer ${OPENAI_API_KEY}`
         }
       }).then(response => {
-        setAnswer(response.data.choices[0].text.trim());
+        console.log(response)
+        setAnswer(response.data.choices[0].message.content);
         console.log(response.data)
       }).catch(error => {
         console.log(error.response.data)
