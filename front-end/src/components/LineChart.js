@@ -14,7 +14,7 @@ function LineChart({ district }) {
       const data = res.data
       // console.log(data.time)
       const newOption = {
-        grid: { top: 40, right: 40, bottom: 30, left: 40 },
+        grid: { top: 40, right: 40, bottom: 30, left: 60 },
         title: {
           text: 'Active Business Quarterly Growth Rate during Periods',
           // subtext: '',
@@ -24,7 +24,7 @@ function LineChart({ district }) {
             fontStyle: "normal",
             fontWeight: "lighter",
             fontFamily: "Arial",
-            color: "rgba(0, 0, 0, 1)",
+            color: "rgba(0, 0, 0, 0.59)",
           },
           padding:[10,10,10,10],
         },
@@ -34,10 +34,20 @@ function LineChart({ district }) {
           data: data.time
         },
         yAxis: {
-          type: "value"
+          type: "value",
+          axisLabel:{
+            formatter: "{value} %"
+          }
         },
         tooltip: {
           trigger: 'axis',
+          valueFormatter: (value) => {
+            if (value !== undefined){
+              return value.toFixed(4) + '%'
+            }else{
+              return value
+            }
+          }
           // formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         series: data.industries.map( industry => {
