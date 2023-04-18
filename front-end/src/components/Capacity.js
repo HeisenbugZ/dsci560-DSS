@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 
-
-
-
-function Capacity({ district }) {
+function Capacity({ district, industry}) {
     
     
     return (

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter , Routes, Route } from 'react-router-dom'
 import MapPage from './pages/MapPage';
 import Welcome from './pages/WelcomePage';
-import DetailPage from './pages/DetailPage';
+import DashboardPage from './pages/DashboardPage';
 import ChatGPT from './components/ChatGPT';
 import './styles/main.css';
 
@@ -16,8 +16,10 @@ function App() {
           <Route path="/map" element={ <MapPage
                                           selectedDistrict={selectedDistrict}
                                           setSelectedDistrict={setSelectedDistrict}/> }/>
+          <Route path="/dashboard" element={<DashboardPage
+                                          selectedDistrict={selectedDistrict}
+                                          setSelectedDistrict={setSelectedDistrict}/>} />
           <Route path="/chat" element={<ChatGPT />} />
-          <Route path="/detail" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
   );
