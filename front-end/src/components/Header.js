@@ -21,10 +21,10 @@ function Header() {
         </div>
         <div className='dataSource'>
           <p>Data Source : 
-          <a target="_blank" href="https://data.lacity.org/Administration-Finance/Listing-of-All-Businesses/r4uk-afju"> LOS ANGELES OPEN DATA</a>
+          <a target="_blank" href="https://data.lacity.org/Administration-Finance/Listing-of-All-Businesses/r4uk-afju" rel="noreferrer"> LOS ANGELES OPEN DATA</a>
           </p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a target="_blank" href="https://www.bls.gov/cew/downloadable-data-files.htm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U.S. BUREAU OF LABOR STATISTICS</a>
+          <a target="_blank" href="https://www.bls.gov/cew/downloadable-data-files.htm" rel="noreferrer"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U.S. BUREAU OF LABOR STATISTICS</a>
           </p>
         </div>
       {/* </div> */}
