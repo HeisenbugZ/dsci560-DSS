@@ -24,14 +24,14 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
           <img src={goBack}
                alt='logo'
                style={{
-                  width:"50%",
-                  height:"50%"
+                  width:"40%",
+                  height:"40%"
                 }}/>
         </Link>
       </div>
       <div>
           <h1 className='dash-mainHeader'>Dashboard</h1>
-          <h2>{`${district} ${industry}`}</h2>
+          
       </div>
       <div className='selector'>
       <Select
@@ -59,6 +59,7 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
             options={industry_options}
         />
       </div>
+      <div><h2>{`${district} ${industry}`}</h2></div>
     </header>
   );
 }
