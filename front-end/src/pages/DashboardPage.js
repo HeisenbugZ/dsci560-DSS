@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import Capacity from '../components/Capacity';
 import DashboardHeader from '../components/DashboardHeader';
-import '../styles/Detail.css';
+import Capacity from '../components/Capacity';
+import DashCharts from '../components/DashCharts';
+import '../styles/Dashboard.css';
 
 
 export default function DashboardPage( {selectedDistrict, setSelectedDistrict} ){
   const [selectIndustry, setSelecteIndustry] = useState("all")
 
   return (
-    <div className='detail-container'>
+    <div className='dash-container'>
 
-      <div className='detail-header'>
+      <div className='dash-header'>
           <DashboardHeader
             district={ selectedDistrict }
             setDistrict={ setSelectedDistrict }
@@ -18,18 +19,18 @@ export default function DashboardPage( {selectedDistrict, setSelectedDistrict} )
             setIndustry={ setSelecteIndustry }/>
       </div>
 
-      <div className='detail-content'>
+      <div className='dash-content'>
       
         <div className='left-container'>
-        <Capacity
-          district={ selectedDistrict }
-          industry={ selectIndustry }
-        />
+          <Capacity
+            district={ selectedDistrict }
+            industry={ selectIndustry }
+          />
         </div >
 
         <div className='middle-container'>
+          <DashCharts district={ selectedDistrict }/>
         </div>
-
 
         <div className='right-container'>
         </div>

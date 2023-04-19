@@ -36,7 +36,7 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
       <div className='selector'>
       <Select
             showSearch
-            style={{ width: 300 }}
+            style={{ width: 250 }}
             placeholder="Districts"
             optionFilterProp="children"
             filterOption={(input, option) => (option?.label ?? '').includes(input)}

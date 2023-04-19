@@ -1,0 +1,44 @@
+.dash-container {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: flex-start; */
+  /* margin-top: 2rem; */
+  height: 100vh;
+  width: 100%;
+  /* background-color:rgb(244,240,232); */
+  /* background-color: '#f4f0e8'; */
+  background-color:rgb(243, 245, 245);
+}
+
+.dash-header {
+  height: 10%;
+  width: 100%;
+}
+
+.dash-content {
+  display: flex;
+  font-size:18px;
+  height: 90%;
+  width: 100%;
+  /* background-color:rgb(244,240,232); */
+}
+
+.left-container{
+  height: 100%;
+  width: 33%;
+}
+
+.middle-container{
+  height: 100%;
+  width: 33%;
+}
+
+.DashCharts{
+  height: 100%;
+  width: 100%;
+}
+
+.right-container{
+  height: 100%;
+  width: 33%;
+}
