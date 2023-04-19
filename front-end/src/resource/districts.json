@@ -1,0 +1,100 @@
+{
+    "districts": [
+        {
+            "dist_name": "  Los Angeles",
+            "district": "LA",
+            "name": "Los Angeles",
+            "objectid": "0"
+        },
+        {
+            "dist_name": "1 - Eunisses Hernandez",
+            "district": "1",
+            "name": "Eunisses Hernandez",
+            "objectid": "1"
+        },
+        {
+            "dist_name": "2 - Paul Krekorian",
+            "district": "2",
+            "name": "Paul Krekorian",
+            "objectid": "2"
+        },
+        {
+            "dist_name": "3 - Bob Blumenfield",
+            "district": "3",
+            "name": "Bob Blumenfield",
+            "objectid": "3"
+        },
+        {
+            "dist_name": "4 - Nithya Raman",
+            "district": "4",
+            "name": "Nithya Raman",
+            "objectid": "4"
+        },
+        {
+            "dist_name": "5 - Katy Yaroslavsky",
+            "district": "5",
+            "name": "Katy Yaroslavsky",
+            "objectid": "5"
+        },
+        {
+            "dist_name": "6 - Vacant",
+            "district": "6",
+            "name": "Vacant",
+            "objectid": "6"
+        },
+        {
+            "dist_name": "7 - Monica Rodriguez",
+            "district": "7",
+            "name": "Monica Rodriguez",
+            "objectid": "7"
+        },
+        {
+            "dist_name": "8 - Marqueece Harris-Dawson",
+            "district": "8",
+            "name": "Marqueece Harris-Dawson",
+            "objectid": "8"
+        },
+        {
+            "dist_name": "9 - Curren D. Price Jr.",
+            "district": "9",
+            "name": "Curren D. Price Jr.",
+            "objectid": "9"
+        },
+        {
+            "dist_name": "10 - Heather Hutt",
+            "district": "10",
+            "name": "Heather Hutt",
+            "objectid": "10"
+        },
+        {
+            "dist_name": "11 - Traci Park",
+            "district": "11",
+            "name": "Traci Park",
+            "objectid": "11"
+        },
+        {
+            "dist_name": "12 - John Lee",
+            "district": "12",
+            "name": "John Lee",
+            "objectid": "12"
+        },
+        {
+            "dist_name": "13 - Hugo Soto-Martinez",
+            "district": "13",
+            "name": "Hugo Soto-Martinez",
+            "objectid": "13"
+        },
+        {
+            "dist_name": "14 - Kevin de Le\u00f3n",
+            "district": "14",
+            "name": "Kevin de Le\u00f3n",
+            "objectid": "14"
+        },
+        {
+            "dist_name": "15 - Tim McOsker",
+            "district": "15",
+            "name": "Tim McOsker",
+            "objectid": "15"
+        }
+    ]
+}

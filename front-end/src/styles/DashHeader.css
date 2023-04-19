@@ -1,0 +1,8 @@
+.dash-headerContainer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    /* justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center; */
+}

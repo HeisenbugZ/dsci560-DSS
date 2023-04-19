@@ -1,0 +1,104 @@
+{
+  "industries": [
+    {
+      "code": 492,
+      "name": "Couriers & messengers "
+    },
+    {
+      "code": 611,
+      "name": "Educational services "
+    },
+    {
+      "code": 5311,
+      "name": "Lessors of Real Estate"
+    },
+    {
+      "code": 5411,
+      "name": "Legal services"
+    },
+    {
+      "code": 5414,
+      "name": "Specialized design services "
+    },
+    {
+      "code": 5613,
+      "name": "Employment services "
+    },
+    {
+      "code": 5615,
+      "name": "Travel arrangement & reservation services "
+    },
+    {
+      "code": 7139,
+      "name": "Other amusement & recreation services"
+    },
+    {
+      "code": 7211,
+      "name": "Traveler accommodation "
+    },
+    {
+      "code": 54151,
+      "name": "Computer systems design & related services "
+    },
+    {
+      "code": 54192,
+      "name": "Photographic services "
+    },
+    {
+      "code": 441120,
+      "name": "Used car dealers "
+    },
+    {
+      "code": 524210,
+      "name": "Insurance agencies & brokerages "
+    },
+    {
+      "code": 541213,
+      "name": "Tax preparation services "
+    },
+    {
+      "code": 541310,
+      "name": "Architectural services "
+    },
+    {
+      "code": 541330,
+      "name": "Engineering services "
+    },
+    {
+      "code": 621111,
+      "name": "Offices of physicians "
+    },
+    {
+      "code": 621610,
+      "name": "Home health care services "
+    },
+    {
+      "code": 711410,
+      "name": "Agents & managers for artists, athletes, entertainers, & other public figures "
+    },
+    {
+      "code": 722511,
+      "name": "Full-service restaurants "
+    },
+    {
+      "code": 811490,
+      "name": "Other personal & household goods repair & maintenance "
+    },
+    {
+      "code": 812111,
+      "name": "Barber shops "
+    },
+    {
+      "code": 812112,
+      "name": "Beauty salons "
+    },
+    {
+      "code": 812113,
+      "name": "Nail salons "
+    },
+    {
+      "code": 812930,
+      "name": "Parking lots & garages "
+    }
+  ]
+}
