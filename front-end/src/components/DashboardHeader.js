@@ -37,7 +37,12 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
       <Select
             showSearch
             style={{ width: 250 }}
-            placeholder="Districts"
+            // placeholder={district==='LA' ? 
+            //                         'Los Angeles' 
+            //                         :''}
+            defaultValue={district==='LA' ? 
+                                    'LA' 
+                                    :district}
             optionFilterProp="children"
             filterOption={(input, option) => (option?.label ?? '').includes(input)}
             filterSort={(optionA, optionB) =>
@@ -49,7 +54,7 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
         <Select
             showSearch
             style={{ width: 350 }}
-            placeholder="Industry"
+            placeholder="All Industry"
             optionFilterProp="children"
             filterOption={(input, option) => (option?.label ?? '').includes(input)}
             filterSort={(optionA, optionB) =>

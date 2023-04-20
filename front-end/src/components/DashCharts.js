@@ -13,7 +13,7 @@ function createSeriesList(n) {
       type: 'line',
       smooth: true,
       seriesLayoutBy: 'row',
-      emphasis: { focus: 'series' }
+      // emphasis: { focus: 'series' }
     });
   }
   series.push({
@@ -21,8 +21,8 @@ function createSeriesList(n) {
     id: 'pie',
     radius: '30%',
     center: ['50%', '25%'],
-    emphasis: { focus: 'self' },
-    label: { formatter: '{b}: {@2022/2} ({d}%)' },
+    // emphasis: { focus: 'self' }, 
+    label: { formatter: '{b}z' },
     encode: { itemName: 'Industry', value: '2022/2', tooltip: '2022/2' }
   });
 
@@ -48,7 +48,9 @@ export default function DashCharts({ district }) {
         // console.log(formattedData)
         const option = {
           title: {
-            text: 'Number of Active Business',
+            text: `Number of Active Business in ${district==='LA' ? 
+                                                          district 
+                                                          :'District '+district}`,
             left: 'center',
             top: '43%',
           },
