@@ -35,7 +35,8 @@ export default function DashCharts({ district }) {
     const current = chartRef.current;
     const chartInit = () => {
       let chartInstance = echarts.init(chartRef.current);
-      axios.get(API_Active_Business(district,null,null,10)).then(res => {
+      const num = 10
+      axios.get(API_Active_Business(district,null,null,num)).then(res => {
         const data = res.data
         const formattedData = [
           ['Industry', ...data.time],
@@ -46,24 +47,50 @@ export default function DashCharts({ district }) {
         ];
         // console.log(formattedData)
         const option = {
+          title: {
+            text: 'Number of Active Business',
+            left: 'center',
+            top: '43%',
+          },
           legend: {
             type: 'scroll',
             // orient: 'vertical',
-            data: data.industries.map(item => item.name)
+            // data: data.industries.map(item => item.name)
           },
           tooltip: [
-            // {trigger: 'item',
-            // formatter: '{a} <br/>{b} : {c} ({d}%)'},
-            {trigger: 'axis',
-            showContent: false}
+            {
+              trigger: 'axis',
+              // showContent: false
+            },
+            {
+              trigger: 'item',
+              // formatter: '({d}%)'
+            },
           ],
           dataset: {
             source: formattedData
           },
+          dataZoom: [
+            {
+              show: true,
+              realtime: true,
+              start: 60,
+              end: 100,
+              xAxisIndex: [0, 1],
+              bottom: 13
+            },
+            {
+              type: 'inside',
+              realtime: true,
+              start: 60,
+              end: 100,
+              xAxisIndex: [0, 1]
+            }
+          ],
           xAxis: { type: 'category' },
           yAxis: { gridIndex: 0 },
-          grid: { top: '55%' },
-          series: createSeriesList(32)
+          grid: { top: '50%', right: '12%', bottom: '12%', left: '12%' },
+          series: createSeriesList(num)
         };
         chartInstance.on('updateAxisPointer', function (event) {
           const xAxisInfo = event.axesInfo[0];
@@ -73,7 +100,8 @@ export default function DashCharts({ district }) {
               series: {
                 id: 'pie',
                 label: {
-                  formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                  // formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                  formatter: '{b}'
                 },
                 encode: {
                   value: dimension,
@@ -99,14 +127,12 @@ export default function DashCharts({ district }) {
   
 
   return (
-    <div className='DashCharts'>
+    
       <Card>
-        {/* <ReactEcharts
-          option={option}
-          style={{ height: "80vh"}}
-        ></ReactEcharts> */}
-        <div ref={chartRef} style={{ height: "80vh" }}></div>
+        <div className='DashCharts'>
+          <div ref={chartRef} style={{ height: "600px" }}></div>
+        </div>
       </Card>
-    </div>
+    
   );
 }
