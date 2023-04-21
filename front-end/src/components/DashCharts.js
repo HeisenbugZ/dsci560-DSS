@@ -22,7 +22,7 @@ function createSeriesList(n) {
     radius: '30%',
     center: ['50%', '25%'],
     // emphasis: { focus: 'self' }, 
-    label: { formatter: '{b}z' },
+    label: { formatter: '{b}' },
     encode: { itemName: 'Industry', value: '2022/2', tooltip: '2022/2' }
   });
 
@@ -49,8 +49,8 @@ export default function DashCharts({ district }) {
         const option = {
           title: {
             text: `Number of Active Business in ${district==='LA' ? 
-                                                          district 
-                                                          :'District '+district}`,
+                                                              district 
+                                                              :'District '+district}`,
             left: 'center',
             top: '43%',
           },

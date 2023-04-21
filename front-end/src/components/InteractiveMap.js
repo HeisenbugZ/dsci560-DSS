@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import 'leaflet-geosearch/dist/geosearch.css';
 import districtsData from '../resource/laCouncilDistricts.json';
 import '../styles/HeatMap.css'
 // import { API_Prediction } from "../utils/APIs";
@@ -36,12 +38,6 @@ function getHeatColor(d) {
 function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
     const mapRef = useRef(null);
     const [map, setMap] = useState(null);
-    // const [active_dict, setActive_dict] = useState(
-    //   axios.get(API_Prediction).then(res => {
-    //     console.log(res)
-    //     setActive_dict(res.data)
-    //   })
-    // ); 
   
     useEffect(() => {
 
@@ -81,7 +77,22 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
           attribution:
             'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
         }).addTo(newMap);
-
+        // search bar
+        const provider = new OpenStreetMapProvider();
+        const searchControl = new GeoSearchControl({
+          provider: provider,
+          showMarker: false,
+          autoClose: true,
+          retainZoomLevel: false,
+          animateZoom: true,
+          searchLabel: 'Enter address, place or location',
+          // keepResult: true,
+        });
+        newMap.addControl(searchControl);
+        newMap.on('geosearch/search:locationfound', function(e) {
+          // var pointData = e.result;
+          console.log(e); // or do something else with the point data
+        });
         // 注释栏
         const legend = L.control({ position: "bottomleft" });
 
