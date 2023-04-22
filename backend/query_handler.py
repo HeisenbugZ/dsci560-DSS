@@ -50,7 +50,7 @@ def trend_sql(query: bytes) -> str:
     group = ""
     if ('start' in query): where += f"and date>='{query['start']}' "
     if ('end' in query): where += f"and date<='{query['end']}' "
-    if ('num' in query): where += f"and ranky <= {query['num']} "
+    # if ('num' in query): where += f"and ranky <= {query['num']} "
 
     if ('district' not in query): return ";"
     elif (query["district"] != "LA") :
@@ -75,12 +75,8 @@ def get_capacity_sql(query: bytes) ->str:
     # group = ["code","district"]
     if (query["district"]!="LA"):
         where += f"and district={query['district']} "
-
-
     if ("code" in query):
         where += f"and code={query['code']}"
-
-
     return f"{sql} {where}"
 
 
@@ -89,13 +85,26 @@ def api_node_sql_3(query: bytes) -> str: ...
 ...
 ...
 
+def rank_process(x: int, highlight: int):
+    if x == highlight: return 0
+    elif x > highlight: return x - 1
+    else: return x
 
-def trend_data_process(data: Data) -> str:
+def trend_data_process(data: Data, highlighted: int, max_rank: int) -> str:
     if not len(data.columns): return "[]"
     data.rename("ranky", "rank");
     date = sorted(list(set(data["date"])))
     df = pd.DataFrame(data._Data__data, columns=data.columns)
     df = df.groupby(["code", "name", "rank"]).agg(list).reset_index()
+    ranks = df[df.code == int(highlighted)]["rank"]
+    if (ranks.shape[0]):
+        ranks = int(ranks.mean())
+        ranksArray = df["rank"].apply(lambda x: rank_process(x, ranks))
+        df["rank"] = ranksArray
+    elif highlighted:
+        return '{ "error" : ' +f'"Code Not exists: {highlighted}"' + '}'
+
+    df = df[df["rank"]<=max_rank]
     data = Data(df.columns, df.values)
     data.drop("date")
     return '{' + f''' "time": {json.dumps(date)},
