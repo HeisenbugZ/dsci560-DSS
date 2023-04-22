@@ -1,0 +1,33 @@
+.logo{
+    width: 10vh;
+    height: 10vh;
+}
+.dash-headerContainer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    /* justify-content: space-between; */
+    /* flex-wrap: nowrap; */
+    align-items: center;
+}
+
+.dash-mainHeader{
+    height: 100%;
+    /* width: 82%; */
+    font-size:2.5vh;
+    font-weight: bold;
+    vertical-align: middle;
+    font-family: Tahoma;
+    color:rgb(202, 0, 0);
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    /* flex-grow: 4 */
+    /* text-shadow:#f3f3f3 1px 1px 0px, #b2b2b2 1px 2px 0; */
+    /* margin-top: 0.5rem; */
+    /* padding-top: 1rem;
+    padding-bottom: 1rem; */
+
+    /* margin-left: 2rem; */
+    
+}

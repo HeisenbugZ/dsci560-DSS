@@ -1,6 +1,7 @@
 .map-container {
-  height: 100%;
+  height: 99.8%;
   width: 60%;
+  align-self: flex-end;
 }
 
 body {

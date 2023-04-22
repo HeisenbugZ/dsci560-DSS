@@ -1,26 +1,29 @@
 import React, { useState, useRef, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import 'leaflet-geosearch/dist/geosearch.css';
 import districtsData from '../resource/laCouncilDistricts.json';
 import '../styles/HeatMap.css'
+// import { API_Prediction } from "../utils/APIs";
+// import axios from "axios";
 
 const d_count = {
-  '1': 7789,
-  '2': 9119,
-  '3': 9970,
-  '4': 15312,
-  '5': 16834,
-  '6': 7968,
-  '7': 4270,
-  '8': 5636,
-  '9': 5131,
-  '10': 11819,
-  '11': 13531,
-  '12': 7541,
-  '13': 12584,
-  '14': 13458,
-  '15': 4951
-}
+  "1": 7954,
+  "2": 9299,
+  "3": 10155,
+  "4": 15606,
+  "5": 17179,
+  "6": 8101,
+  "7": 4349,
+  "8": 5755,
+  "9": 5244,
+  "10": 12059,
+  "11": 13819,
+  "12": 7691,
+  "13": 12848,
+  "14": 13719,
+  "15": 5063}
 
 function getHeatColor(d) {
   return d < 5000  ? '#ffffe5':
@@ -35,7 +38,6 @@ function getHeatColor(d) {
 function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
     const mapRef = useRef(null);
     const [map, setMap] = useState(null);
-    
   
     useEffect(() => {
 
@@ -75,7 +77,22 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
           attribution:
             'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
         }).addTo(newMap);
-
+        // search bar
+        const provider = new OpenStreetMapProvider();
+        const searchControl = new GeoSearchControl({
+          provider: provider,
+          showMarker: false,
+          autoClose: true,
+          retainZoomLevel: false,
+          animateZoom: true,
+          searchLabel: 'Enter address, place or location',
+          // keepResult: true,
+        });
+        newMap.addControl(searchControl);
+        newMap.on('geosearch/search:locationfound', function(e) {
+          // var pointData = e.result;
+          console.log(e); // or do something else with the point data
+        });
         // 注释栏
         const legend = L.control({ position: "bottomleft" });
 
@@ -118,7 +135,6 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
               layer.bindPopup(district.properties.dist_name);
               layer.on({
                 click: () => {
-                  
                   districtLayers.eachLayer(function(layer) {
                     if (layer.options.className === select) {
                       const pre_select = select

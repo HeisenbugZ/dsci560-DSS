@@ -10,13 +10,23 @@ export function API_Recommendations ( district ) {
   return base + 'recommandation?district=' + district
 };
 
-export function API_Active_Business ( district, from, to ) {
+export function API_Active_Business ( district, start, end, num=null ) {
   return base + 'active_data?district=' + district
+              + (start ? `&start=${start}` : "")
+              + (end ? `&start=${end}` : "")
+              + (num ? `&num=${num}` : "");
 }
 
-export function API_Change_Ratio (district, from, to ) {
-  return base + "change_ratio?district=" + district
+export function API_Change_Ratio (district, start=null, end=null, num=null ) {
+  return base + "change_ratio?district=" + district 
+              + (start ? `&start=${start}` : "")
+              + (end ? `&start=${end}` : "")
+              + (num ? `&num=${num}` : "");
+}
+
+export function API_Prediction() {
+  return base + 'active_pred'
 }
 
 // openAPI
-export const OPENAI_API_KEY = "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"
+export const OPENAI_API_KEY = "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"
