@@ -1,3 +1,4 @@
+from gc import disable
 from db_func import Data, json
 import pandas as pd
 
@@ -9,7 +10,6 @@ def extract_param(query: bytes) -> dict:
     query = query.decode()
     form_content = dict(i.split('=') for i in query.split('&'))
     return form_content
-
 
 def test_sql(query: bytes) -> str:
     query = extract_param(query)
@@ -67,6 +67,21 @@ def active_pred_sql(query: bytes) ->str:
     return """select district, sum(value) as total from predict
                 group by district
                 ORDER BY district"""
+
+def get_capacity_sql(query: bytes) ->str:
+    sql = f"""select sum(value-net_increase) as prev, sum(value) as pred, sum(net_increase) as capacity
+                from predict """
+    where = "where 1 "
+    # group = ["code","district"]
+    if (query["district"]!="LA"):
+        where += f"and district={query['district']} "
+
+
+    if ("code" in query):
+        where += f"and code={query['code']}"
+
+
+    return f"{sql} {where}"
 
 
 def api_node_sql_2(query: bytes) -> str: ...

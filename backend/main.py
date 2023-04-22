@@ -90,6 +90,13 @@ def active_pred():
     return json.dumps(dict(data._Data__data))
     # return data.json()
 
+@app.route("/capacity") # accept: {distrcit: int|"LA", code: Optional[int]}
+def get_capacity():
+    sql = get_capacity_sql(request.args)
+    data = db.query(sql)
+    return data.json()
+
+
 @app.route("/anynode")  # accept: {**kwargs: any}
 def node():
     ...
