@@ -79,6 +79,17 @@ def get_capacity_sql(query: bytes) ->str:
         where += f"and code={query['code']}"
     return f"{sql} {where}"
 
+def economics_sql(query: bytes) ->str:
+    if not ("code" in query)^("num" in query): return '{"error": "code and num should appear and only should appear one of them"}'
+    select = "select industry_code as code, date, total_qtrly_wages as wages, qtrly_contributions as contribution, wages_change_rate as wage_change, contribution_change_rate as contribution_change, ranky"
+    order = "order by ranky, date"
+    froms = "from economics right join total_rank on economics.industry_code=total_rank.code"
+    where = f"where wages_change_rate is not null  "
+    if ('start' in query): where += f"and date>='{query['start']}' "
+    if ('end' in query): where += f"and date<='{query['end']}' "
+    if ('num' in query): where += f"and ranky<={query['num']} "
+    if ('code' in query): where += f"and industry_code={query['code']} "
+    return f"{select} {froms} {where} {order}"
 
 def api_node_sql_2(query: bytes) -> str: ...
 def api_node_sql_3(query: bytes) -> str: ...
@@ -94,7 +105,7 @@ def trend_data_process(data: Data, highlighted: int, max_rank: int) -> str:
     if not len(data.columns): return "[]"
     data.rename("ranky", "rank");
     date = sorted(list(set(data["date"])))
-    df = pd.DataFrame(data._Data__data, columns=data.columns)
+    df = pd.DataFrame(data.values, columns=data.columns)
     df = df.groupby(["code", "name", "rank"]).agg(list).reset_index()
     ranks = df[df.code == int(highlighted)]["rank"]
     if (ranks.shape[0]):
@@ -110,5 +121,14 @@ def trend_data_process(data: Data, highlighted: int, max_rank: int) -> str:
     return '{' + f''' "time": {json.dumps(date)},
                       "industries": {data.json()} ''' +'}'
 
+def economics_data_process(data: Data) -> str:
+    data.rename('ranky', 'rank')
+    date = sorted(list(set(data["date"])))
+    df = pd.DataFrame(data.values, columns=data.columns)
+    df = df.groupby(["code", "rank"]).agg(list).reset_index()
+    data = Data(df.columns, df.values)
+    data.drop("date")
+    return '{' + f''' "time": {json.dumps(date)},
+                      "industries": {data.json()} ''' +'}'
 
 def api_node_data_proc_1(data: Data) -> Data: ...
