@@ -10,6 +10,10 @@
     /* padding-top: 0.5rem; */
     /* padding-bottom: 0.5rem; */
 }
+.recommendation p{
+    font-size: 15px;
+    text-align:right;
+}
 
 .industry {
     display: flex;
@@ -46,9 +50,13 @@
     font-family: Tahoma;
     /* text-align: middle; */
 }
+.recContent{
+    height: 80%;
+    display: flex;
+}
 
 .recUl{
-    height: 80%;
+    
     font-size: 2vh;
     padding-left: 3rem;
 }

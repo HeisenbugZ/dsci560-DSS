@@ -26,7 +26,7 @@
 .left-container{
   height: 100%;
   width: 27%;
-  margin-left: 4rem;
+  margin-left: 2rem;
 }
 
 .middle-container{
@@ -47,9 +47,17 @@
 .activeNum{
   font-size:28px;
   text-align: center;
+  font-weight: bold;
+}
+
+.predictedNum{
+  font-size:28px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .capacityNum{
   font-size:28px;
   text-align: center;
+  font-weight: bold;
 }

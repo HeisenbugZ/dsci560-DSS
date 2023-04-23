@@ -20,6 +20,7 @@ const district_options = districts.districts.map(obj => ({
 
 function Capacity({ district, industry}) {
   const [current_active, setCurActive] = useState([])
+  const [predict_active, setPredict] = useState([])
   const [capacity, setCapacity] = useState([])
   const industryOption = industry_options.find(option => option.label === industry);
   const industryValue = industryOption ? industryOption.value : null;
@@ -30,33 +31,48 @@ function Capacity({ district, industry}) {
       // console.log(res)
       const cur_active = res.data.prev
       // console.log(cur_active)
+      const pred_active = res.data.pred
       const capacity = res.data.capacity;
       // console.log(capacity)
       setCurActive(cur_active);
+      setPredict(pred_active);
       setCapacity(capacity);
     })
   }, [district, industryValue])    
     
   return (
     // <Card>
-      <Space direction="vertical" size={180}>
+      <Space direction="vertical" size={40}>
       {/* <Space direction="horizontal" size={100}></Space> */}
       <Card 
         title="Current Active Business: "
         headStyle={{textAlign: 'Center'}}
         // extra={<a href="#">More</a>}
         style={{
-        width: 300,
+        width: 350,
+        height: 190,
         }}
       >
-        <h3 className='activeNum'>{current_active}</h3>
+        <h3 className='predictedNum'>{current_active}</h3>
       </Card>
       <Card
-        title="Capacity: "
+        title="Predicted Active Business: "
         headStyle={{textAlign: 'Center'}}
         // extra={<a href="#">More</a>}
         style={{
-        width: 300,
+        width: 350,
+        height: 190,
+        }}
+      >
+        <h3 className='capacityNum'>{predict_active}</h3>
+      </Card>
+      <Card
+        title="Capacity for New Business: "
+        headStyle={{textAlign: 'Center'}}
+        // extra={<a href="#">More</a>}
+        style={{
+        width: 350,
+        height: 190,
         }}
       >
         <h3 className='capacityNum'>{capacity}</h3>

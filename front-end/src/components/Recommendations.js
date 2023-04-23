@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 import MoreInfo from './MoreInfo';
 import { API_Recommendations } from '../utils/APIs';
 import '../styles/Sider.css'
@@ -21,15 +22,22 @@ function Recommendations({ district }) {
   
   return (
     <div className='recommendation'>
-      <h3 className='recHeader'>Top 5 Industries Recommendations for startup in {district === "LA" ? district : 'District '+ district}:</h3>
-      <ul className='recUl'>
-      {recommendations.map(industry => {
-        return <div className='industry' key={industry.rank}>
-          <li className='recText'>{`${industry.rank}. ${industry.name}`}</li>
-          <MoreInfo naics={industry.code}/>
-        </div>
-      })}
-      </ul>
+      <h3 className='recHeader'>Top 5 Industries Recommendations for startup in {district === "LA" ? district : 'District '+ district}:
+      </h3>
+      <div className='recContent'>
+        <ul className='recUl'>
+        {recommendations.map(industry => {
+          return <div className='industry' key={industry.rank}>
+            <li className='recText'>{`${industry.rank}. ${industry.name}`}</li>
+            <MoreInfo naics={industry.code}/>
+          </div>
+        })}
+        </ul>
+        <Link to="/dashboard">
+            <p>go to dashboard
+            </p>
+          </Link>
+      </div>
     </div>
   );
 }
