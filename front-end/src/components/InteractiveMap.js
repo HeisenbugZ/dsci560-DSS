@@ -37,7 +37,7 @@ function getHeatColor(d) {
                      '#8c2d04';
 }
 
-function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
+function InteractiveMap({ selectedDistrict, setSelectedDistrict, location, setLocation }) {
     const mapRef = useRef(null);
     const [map, setMap] = useState(null);
   
@@ -122,6 +122,7 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
               layer.bindPopup(district.properties.dist_name);
               layer.on({
                 click: () => {
+                  setLocation("")
                   districtLayers.eachLayer(function(layer) {
                     if (layer.options.className === select) {
                       const pre_select = select
@@ -192,7 +193,8 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
         
         newMap.addControl(searchControl);
         newMap.on('geosearch/showlocation', function(data) {
-          // console.log(data)
+          console.log(data)
+          
           districtLayers.eachLayer(function(layer) {
             const isInside = pointInLayer([data.location.x, data.location.y], layer);
             // console.log(isInside.length > 0)
@@ -200,6 +202,8 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
               // console.log(layer.options.className)
               setSelectedDistrict(layer.options.className)
               layer.setStyle(layerStyle(layer.options.className));
+              // console.log
+              setLocation(data.location.label.split(",")[0])
               // break
             }
           })
@@ -210,7 +214,7 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
 
         setMap(newMap);
       }
-    }, [map, selectedDistrict, setSelectedDistrict]);
+    }, [setLocation, map, selectedDistrict, setSelectedDistrict]);
   
     return <div ref={mapRef} className="map-container" />;
   }

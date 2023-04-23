@@ -3,19 +3,19 @@ import axios from 'axios'
 import { Card, Space  } from 'antd';
 import { API_Capacity } from '../utils/APIs';
 import industries from '../resource/industries.json'
-import districts from '../resource/districts.json'
+// import districts from '../resource/districts.json'
 import '../styles/Dashboard.css'
 
 const industry_options = industries.industries.map(obj => ({
     value: obj.code.toString(),
     label: obj.name
 }));
-console.log(industry_options);
+// console.log(industry_options);
 
-const district_options = districts.districts.map(obj => ({
-    value: obj.district.toString(),
-    label: obj.dist_name
-}));
+// const district_options = districts.districts.map(obj => ({
+//     value: obj.district.toString(),
+//     label: obj.dist_name
+// }));
 
 
 function Capacity({ district, industry}) {

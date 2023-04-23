@@ -4,14 +4,10 @@ import LineChart from './LineChart';
 import PieChart from './PieChart';
 import '../styles/Sider.css'
 
-function SideDashboard({ selectedDistrict }) {
+function SideDashboard({ selectedDistrict, location}) {
   return (
     <div className='sider-container'>
-      {/* <h2 className='dashHeader'>{selectedDistrict === "LA" ? 
-        "Dashboard (LA)" : 
-        `Dashboard (District ${selectedDistrict})`}
-      </h2> */}
-      <Recommendations district={selectedDistrict} />
+      <Recommendations district={selectedDistrict} location={location}/>
       <LineChart district={selectedDistrict} />
       <PieChart district={selectedDistrict} />
     </div>
