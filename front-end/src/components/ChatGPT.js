@@ -3,6 +3,18 @@ import { Form, Button, Input, Space } from 'antd';
 import axios from "axios";
 import { OPENAI_API_KEY } from "../utils/APIs";
 
+function convertTextToHtml(text) {
+  const lines = text.split('\n');
+
+  return (
+    <div>
+      {lines.map((line, index) => (
+        <p key={index}>{line}</p>
+      ))}
+    </div>
+  );
+}
+
 function ChatGPT() {
   const [question, setQuestion] = useState("what can I do for you?");
   const [answer, setAnswer] = useState("");
@@ -11,6 +23,7 @@ function ChatGPT() {
   const handleSubmit = async (event) => {
     // event.preventDefault();
     try {
+      setError("");
       await axios.post('https://api.openai.com/v1/chat/completions', {
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: question }],
@@ -23,12 +36,13 @@ function ChatGPT() {
       }).then(response => {
         // console.log(response)
         setAnswer(response.data.choices[0].message.content);
-        // console.log(response.data)
+        console.log(response.data.choices[0])
       }).catch(error => {
         console.log(error.response.data)
+        setError(error.response.data.error.message);
       })
       setQuestion("");
-      setError("");
+      
       
     } catch (error) {
       setError("An error occurred. Please try again later.");
@@ -37,7 +51,7 @@ function ChatGPT() {
 
   return (
     <div style={{ justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div>{answer}</div>
+      <div style={{width: '500px'}}>{convertTextToHtml(answer)}</div>
       {/* <form onSubmit={handleSubmit}>
         <input
           type="text"
