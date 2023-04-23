@@ -3,8 +3,10 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import 'leaflet-geosearch/dist/geosearch.css';
+import { pointInLayer } from 'leaflet-pip';
 import districtsData from '../resource/laCouncilDistricts.json';
 import '../styles/HeatMap.css'
+// import logo from '../resource/logo.png'
 // import { API_Prediction } from "../utils/APIs";
 // import axios from "axios";
 
@@ -77,22 +79,7 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
           attribution:
             'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
         }).addTo(newMap);
-        // search bar
-        const provider = new OpenStreetMapProvider();
-        const searchControl = new GeoSearchControl({
-          provider: provider,
-          showMarker: false,
-          autoClose: true,
-          retainZoomLevel: false,
-          animateZoom: true,
-          searchLabel: 'Enter address, place or location',
-          // keepResult: true,
-        });
-        newMap.addControl(searchControl);
-        newMap.on('geosearch/search:locationfound', function(e) {
-          // var pointData = e.result;
-          console.log(e); // or do something else with the point data
-        });
+        
         // 注释栏
         const legend = L.control({ position: "bottomleft" });
 
@@ -172,6 +159,54 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict }) {
         });
         districtLayers.addTo(newMap)
 
+        // search bar
+        // const provider = new OpenStreetMapProvider();
+        const searchControl = new GeoSearchControl({
+          provider: new OpenStreetMapProvider(),
+          autoComplete: true,
+          searchLabel: 'Search location or zipcode',
+          autoCompleteDelay: 250,
+          showMarker: true,
+          showPopup: false,
+          marker: {
+            icon: new L.Icon.Default(),
+            draggable: false
+          },
+          style: 'bar',
+          autoClose: true,
+          searchBounds: null,
+          keepResult: true,
+          updateMap: true,
+          animateZoom: true,
+          autoResize: true,
+          viewer: null,
+          popupFormat: function(result) {
+            // console.log(result)
+            return result.result.label;
+          },
+          maxMarkers: 1,
+          retainZoomLevel: false,
+          animateZoomOnSubmit: true,
+          autoCloseTimeout: 5000
+        });
+        
+        newMap.addControl(searchControl);
+        newMap.on('geosearch/showlocation', function(data) {
+          // console.log(data)
+          districtLayers.eachLayer(function(layer) {
+            const isInside = pointInLayer([data.location.x, data.location.y], layer);
+            // console.log(isInside.length > 0)
+            if (isInside.length > 0) {
+              // console.log(layer.options.className)
+              setSelectedDistrict(layer.options.className)
+              layer.setStyle(layerStyle(layer.options.className));
+              // break
+            }
+          })
+        });
+        newMap.on("geosearch/marker/dragend", () => {
+          console.log('dnaijwdbaioub')
+        });
 
         setMap(newMap);
       }
