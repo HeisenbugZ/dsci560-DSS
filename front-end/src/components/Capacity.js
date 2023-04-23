@@ -38,8 +38,9 @@ function Capacity({ district, industry}) {
   }, [district, industryValue])    
     
   return (
-    <Card>
-      <Space direction="vertical" size={80}>
+    // <Card>
+      <Space direction="vertical" size={180}>
+      {/* <Space direction="horizontal" size={100}></Space> */}
       <Card 
         title="Current Active Business: "
         headStyle={{textAlign: 'Center'}}
@@ -74,7 +75,7 @@ function Capacity({ district, industry}) {
         </ul>
       </div> */}
       </Space>
-    </Card>
+    // </Card>
   );
 }
   
