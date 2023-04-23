@@ -42,3 +42,13 @@
   height: 100%;
   width: 33%;
 }
+
+.activeNum{
+  font-size:28px;
+  text-align: center;
+}
+
+.capacityNum{
+  font-size:28px;
+  text-align: center;
+}
