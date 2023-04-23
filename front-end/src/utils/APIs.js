@@ -28,5 +28,10 @@ export function API_Prediction() {
   return base + 'active_pred'
 }
 
+export function API_Capacity (district, naics) {
+  return base + "capacity?district=" + district 
+              + (naics ? `&code=${naics}` : "");
+}
+
 // openAPI
 export const OPENAI_API_KEY = "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"
