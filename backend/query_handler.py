@@ -1,3 +1,4 @@
+from gc import disable
 from db_func import Data, json
 import pandas as pd
 
@@ -9,7 +10,6 @@ def extract_param(query: bytes) -> dict:
     query = query.decode()
     form_content = dict(i.split('=') for i in query.split('&'))
     return form_content
-
 
 def test_sql(query: bytes) -> str:
     query = extract_param(query)
@@ -50,7 +50,7 @@ def trend_sql(query: bytes) -> str:
     group = ""
     if ('start' in query): where += f"and date>='{query['start']}' "
     if ('end' in query): where += f"and date<='{query['end']}' "
-    if ('num' in query): where += f"and ranky <= {query['num']} "
+    # if ('num' in query): where += f"and ranky <= {query['num']} "
 
     if ('district' not in query): return ";"
     elif (query["district"] != "LA") :
@@ -68,23 +68,67 @@ def active_pred_sql(query: bytes) ->str:
                 group by district
                 ORDER BY district"""
 
+def get_capacity_sql(query: bytes) ->str:
+    sql = f"""select sum(value-net_increase) as prev, sum(value) as pred, sum(net_increase) as capacity
+                from predict """
+    where = "where 1 "
+    # group = ["code","district"]
+    if (query["district"]!="LA"):
+        where += f"and district={query['district']} "
+    if ("code" in query):
+        where += f"and code={query['code']}"
+    return f"{sql} {where}"
+
+def economics_sql(query: bytes) ->str:
+    if not ("code" in query)^("num" in query): return '{"error": "code and num should appear and only should appear one of them"}'
+    select = "select industry_code as code, date, total_qtrly_wages as wages, qtrly_contributions as contribution, wages_change_rate as wage_change, contribution_change_rate as contribution_change, ranky"
+    order = "order by ranky, date"
+    froms = "from economics right join total_rank on economics.industry_code=total_rank.code"
+    where = f"where wages_change_rate is not null  "
+    if ('start' in query): where += f"and date>='{query['start']}' "
+    if ('end' in query): where += f"and date<='{query['end']}' "
+    if ('num' in query): where += f"and ranky<={query['num']} "
+    if ('code' in query): where += f"and industry_code={query['code']} "
+    return f"{select} {froms} {where} {order}"
 
 def api_node_sql_2(query: bytes) -> str: ...
 def api_node_sql_3(query: bytes) -> str: ...
 ...
 ...
 
+def rank_process(x: int, highlight: int):
+    if x == highlight: return 0
+    elif x > highlight: return x - 1
+    else: return x
 
-def trend_data_process(data: Data) -> str:
+def trend_data_process(data: Data, highlighted: int, max_rank: int) -> str:
     if not len(data.columns): return "[]"
     data.rename("ranky", "rank");
     date = sorted(list(set(data["date"])))
-    df = pd.DataFrame(data._Data__data, columns=data.columns)
+    df = pd.DataFrame(data.values, columns=data.columns)
     df = df.groupby(["code", "name", "rank"]).agg(list).reset_index()
+    ranks = df[df.code == int(highlighted)]["rank"]
+    if (ranks.shape[0]):
+        ranks = int(ranks.mean())
+        ranksArray = df["rank"].apply(lambda x: rank_process(x, ranks))
+        df["rank"] = ranksArray
+    elif highlighted:
+        return '{ "error" : ' +f'"Code Not exists: {highlighted}"' + '}'
+
+    df = df[df["rank"]<=max_rank]
     data = Data(df.columns, df.values)
     data.drop("date")
     return '{' + f''' "time": {json.dumps(date)},
                       "industries": {data.json()} ''' +'}'
 
+def economics_data_process(data: Data) -> str:
+    data.rename('ranky', 'rank')
+    date = sorted(list(set(data["date"])))
+    df = pd.DataFrame(data.values, columns=data.columns)
+    df = df.groupby(["code", "rank"]).agg(list).reset_index()
+    data = Data(df.columns, df.values)
+    data.drop("date")
+    return '{' + f''' "time": {json.dumps(date)},
+                      "industries": {data.json()} ''' +'}'
 
 def api_node_data_proc_1(data: Data) -> Data: ...
