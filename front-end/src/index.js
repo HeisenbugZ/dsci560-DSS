@@ -5,6 +5,7 @@ import MapPage from './pages/MapPage';
 import Welcome from './pages/WelcomePage';
 import DashboardPage from './pages/DashboardPage';
 import ChatGPT from './components/ChatGPT';
+import Chatbott from './components/Chatbot';
 import './styles/main.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                                           selectedDistrict={selectedDistrict}
                                           setSelectedDistrict={setSelectedDistrict}/>} />
           <Route path="/chat" element={<ChatGPT />} />
+          <Route path="/chatbot" element={<Chatbott />} />
       </Routes>
     </BrowserRouter>
   );

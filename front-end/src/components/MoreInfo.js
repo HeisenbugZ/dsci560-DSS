@@ -36,7 +36,7 @@ function MoreInfo( { naics } ) {
   
     return (
       <>
-        <p onClick={showModal}>
+        <p onClick={showModal} style={{cursor: 'pointer'}}>
           &nbsp;🔍
         </p>
         <Modal title={info.name} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
