@@ -37,7 +37,7 @@ function Recommendations({ district, location}) {
       
       {/* <h3 className='recHeader'>Top 5 Industries Recommendations for startup in {district === "LA" ? district : 'District '+ district}:
       </h3> */}
-      <h3 className='recHeader'>Top 5 Industries Recommendations for startup:
+      <h3 className='recHeader'>Top 5 Industries Recommendations for New Business:
       </h3>
       <div className='recContent'>
         <ul className='recUl'>

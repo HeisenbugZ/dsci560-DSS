@@ -130,7 +130,7 @@ export default function WageChart({ industry }) {
               show: false
             }
           }],
-          grid: { top: 40, right: 10, bottom: 59, left: 74 },
+          grid: { top: 40, right: 10, bottom: 59, left: 84 },
           series: createSeriesList(num, data.industries.wage_change)
           
 
