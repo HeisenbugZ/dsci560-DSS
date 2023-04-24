@@ -29,7 +29,10 @@ export default function DashboardPage( {selectedDistrict, setSelectedDistrict} )
         </div >
 
         <div className='middle-container'>
-          <DashCharts district={ selectedDistrict }/>
+          <DashCharts 
+            district={ selectedDistrict }
+            industry={ selectIndustry }
+          />
         </div>
 
         <div className='right-container'>

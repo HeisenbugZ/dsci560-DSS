@@ -193,7 +193,7 @@ function InteractiveMap({ selectedDistrict, setSelectedDistrict, location, setLo
         
         newMap.addControl(searchControl);
         newMap.on('geosearch/showlocation', function(data) {
-          console.log(data)
+          // console.log(data)
           
           districtLayers.eachLayer(function(layer) {
             const isInside = pointInLayer([data.location.x, data.location.y], layer);

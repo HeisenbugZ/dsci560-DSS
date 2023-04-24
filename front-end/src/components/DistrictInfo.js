@@ -10,7 +10,7 @@ export default function DistrictInfo( { district } ) {
     const showModal = () => {
       const url = API_DistrictInfo(district)
       axios.get(url).then(res => {
-        console.log(res)
+        // console.log(res)
         setInfo(res.data);
       })
       setIsModalOpen(true);
