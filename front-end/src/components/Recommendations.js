@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import MoreInfo from './MoreInfo';
+import DistrictInfo from './DistrictInfo';
 import { API_Recommendations } from '../utils/APIs';
 import '../styles/Sider.css'
 
@@ -23,7 +24,11 @@ function Recommendations({ district, location}) {
   return (
     <div className='recommendation'>
       <div className='recTop'>
-        <h3 className='selectDistrict'>{district === "LA" ? district : 'District '+ district}{location ? `(${location})`:""}</h3>
+        <h3 className='selectDistrict'>
+          {district === "LA" ? district : 'District '+ district}
+          {location ? `(${location})`:""}
+        </h3>
+        {district === "LA" ? "":<DistrictInfo district={district} />}
         <Link className='linkToDashboard' to="/dashboard">
           <p>go to dashboard
           </p>

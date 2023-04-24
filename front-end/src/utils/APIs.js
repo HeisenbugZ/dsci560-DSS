@@ -33,5 +33,9 @@ export function API_Capacity (district, naics) {
               + (naics ? `&code=${naics}` : "");
 }
 
+export function API_DistrictInfo (district) {
+  return base + "district_info?district=" + district
+}
+
 // openAPI
 export const OPENAI_API_KEY = "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"
