@@ -8,18 +8,19 @@
       "code": 611,
       "name": "Educational services "
     },
+
     {
       "code": 4451,
-      "name": "Traveler accommodation (including hotels, motels, & bed & breakfast inns) "
+      "name": "Grocery stores "
     },
-    
+
     {
       "code": 5311,
-      "name": "Lessors of Real Estate"
+      "name": "Lessors of Real Estate "
     },
     {
       "code": 5411,
-      "name": "Legal services"
+      "name": "Legal services "
     },
     {
       "code": 5414,
@@ -38,8 +39,12 @@
       "name": "Travel arrangement & reservation services "
     },
     {
+      "code": 5616,
+      "name": "Investigation and security services "
+    },
+    {
       "code": 7139,
-      "name": "Other amusement & recreation services"
+      "name": "Other amusement & recreation services "
     },
     {
       "code": 7211,
@@ -54,8 +59,20 @@
       "name": "Photographic services "
     },
     {
+      "code": 81112,
+      "name": "Automotive body, interior, and glass repair "
+    },
+    {
       "code": 441120,
       "name": "Used car dealers "
+    },
+    {
+      "code": 446120,
+      "name": "Cosmetic and beauty supply stores "
+    },
+    {
+      "code": 448150,
+      "name": "Clothing accessories stores "
     },
     {
       "code": 524210,

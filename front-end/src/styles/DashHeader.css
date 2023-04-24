@@ -31,3 +31,30 @@
     /* margin-left: 2rem; */
     
 }
+
+/* .logo{
+    height: 100%;
+    width: 5%;
+
+}
+
+.HeaderDiv{
+    height: 100%;
+    width: 30%;
+
+} */
+
+.selector{
+    /* height: 100%;
+    width: 65%; */
+    display: flex;
+    margin-left: 37rem;
+}
+
+/* .selectDistrict{
+
+}
+
+.selectIndustry{
+
+} */
