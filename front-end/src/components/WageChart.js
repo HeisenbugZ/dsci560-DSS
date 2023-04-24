@@ -72,9 +72,17 @@ export default function WageChart({ industry }) {
         console.log(data)
         const option = {
           title: {
-            text: 'wage',
+            text: 'Wage',
             left: 'center',
-            // top: '43%',
+            // top: '5%',
+            // textStyle: {
+            //   fontSize: 16,
+            //   fontStyle: "normal",
+            //   fontWeight: "lighter",
+            //   fontFamily: "Arial",
+            //   color: "rgba(0, 0, 0, 0.59)",
+            // },
+            // padding:[10,10,10,10],
           },
           dataset: {
             source: formattedData
@@ -110,7 +118,7 @@ export default function WageChart({ industry }) {
             // type: "value",
             gridIndex: 0,
             axisLabel:{
-              formatter: "{value}k"
+              formatter: "{value}"
             }
           },
           {
@@ -122,7 +130,7 @@ export default function WageChart({ industry }) {
               show: false
             }
           }],
-          grid: { top: '50%', right: '12%', bottom: '12%', left: '12%' },
+          grid: { top: 40, right: 10, bottom: 59, left: 74 },
           series: createSeriesList(num, data.industries.wage_change)
           
 
@@ -139,8 +147,8 @@ export default function WageChart({ industry }) {
 
   return (
     <Card>
-        <div className='ecoChart'>
-          <div ref={chartRef} style={{ height: "600px" }}></div>
+        <div className='WageChart'>
+          <div ref={chartRef} style={{ height: "250px" }}></div>
         </div>
     </Card>
     

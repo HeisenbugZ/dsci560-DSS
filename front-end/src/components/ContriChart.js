@@ -70,7 +70,7 @@ export default function ContriChart({ industry }) {
         console.log(data)
         const option = {
           title: {
-            text: 'contribution',
+            text: 'Contribution',
             left: 'center',
             // top: '43%',
           },
@@ -120,7 +120,7 @@ export default function ContriChart({ industry }) {
               show: false
             }
           }],
-          grid: { top: '50%', right: '12%', bottom: '12%', left: '12%' },
+          grid: { top: 40, right: 10, bottom: 59, left: 74 },
           series: createSeriesList(num, data.industries.contribution_change)
           
 
@@ -136,9 +136,9 @@ export default function ContriChart({ industry }) {
   }, [industry])
 
   return (
-    <Card>
-        <div className='WageChart'>
-          <div ref={chartRef} style={{ height: "600px" }}></div>
+    <Card className='ContriCard'>
+        <div className='ContriChart'>
+          <div ref={chartRef} style={{ height: "250px" }}></div>
         </div>
     </Card>
     

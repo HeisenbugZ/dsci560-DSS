@@ -20,6 +20,7 @@
   font-size:18px;
   height: 90%;
   width: 100%;
+  padding-top: 2rem;
   /* background-color:rgb(244,240,232); */
 }
 
@@ -63,4 +64,12 @@
   font-size:28px;
   text-align: center;
   font-weight: bold;
+}
+
+.ContriChart{
+  margin-top: 1rem;
+}
+
+.ContriCard{
+  margin-top: 2rem;
 }
