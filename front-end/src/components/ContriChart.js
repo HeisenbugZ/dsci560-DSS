@@ -56,23 +56,23 @@ export default function ContriChart({ industry }) {
           formattedData = [
             ['Industry', ...data.time],
             ...data.industries.map(industry => [
-              industry.code,
+              industry.name.trim(),
               ...industry.contribution
             ])
           ];
         }else{
           formattedData = [
             ['Industry', ...data.time],
-            data.industries.contribution
+            [industries.name, ...data.industries.contribution]
           ]
           num = 1
         }
         console.log(data)
         const option = {
           title: {
-            text: 'Contribution',
+            text: 'Contribution & Quarterly Change Rate',
             left: 'center',
-            // top: '43%',
+            // top: '1%',
           },
           dataset: {
             source: formattedData
@@ -98,6 +98,13 @@ export default function ContriChart({ industry }) {
             {
               trigger: 'axis',
               // showContent: false
+              valueFormatter: (value) => {
+                if (value !== undefined){
+                  return value.toFixed(4) + ' M'
+                }else{
+                  return value
+                }
+              }
             },
           ],
           xAxis: {
@@ -108,19 +115,19 @@ export default function ContriChart({ industry }) {
             // type: "value",
             gridIndex: 0,
             axisLabel:{
-              formatter: "{value}k"
+              formatter: "{value} M"
             }
           },
           {
             type: 'value',
-            min: -0.5,
-            max: 0.5,
+            min: -1.5,
+            max: 1.5,
             interval: 0.05,
             axisLabel: {
               show: false
             }
           }],
-          grid: { top: 40, right: 10, bottom: 59, left: 74 },
+          grid: { top: 40, right: 10, bottom: 59, left: 45 },
           series: createSeriesList(num, data.industries.contribution_change)
           
 
@@ -137,7 +144,7 @@ export default function ContriChart({ industry }) {
 
   return (
     <Card className='ContriCard'>
-        <div className='ContriChart'>
+        <div>
           <div ref={chartRef} style={{ height: "250px" }}></div>
         </div>
     </Card>

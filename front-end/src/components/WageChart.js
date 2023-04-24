@@ -58,21 +58,21 @@ export default function WageChart({ industry }) {
           formattedData = [
             ['Industry', ...data.time],
             ...data.industries.map(industry => [
-              industry.code,
+              industry.name.trim(),
               ...industry.wages
             ])
           ];
         }else{
           formattedData = [
             ['Industry', ...data.time],
-            data.industries.wages
+            [industries.name, ...data.industries.wages]
           ]
           num = 1
         }
         console.log(data)
         const option = {
           title: {
-            text: 'Wage',
+            text: 'Wage & Quarterly Change Rate',
             left: 'center',
             // top: '5%',
             // textStyle: {
@@ -108,6 +108,13 @@ export default function WageChart({ industry }) {
             {
               trigger: 'axis',
               // showContent: false
+              valueFormatter: (value) => {
+                if (value !== undefined){
+                  return value.toFixed(4) + ' M'
+                }else{
+                  return value
+                }
+              }
             },
           ],
           xAxis: {
@@ -118,19 +125,19 @@ export default function WageChart({ industry }) {
             // type: "value",
             gridIndex: 0,
             axisLabel:{
-              formatter: "{value}"
+              formatter: "{value} M"
             }
           },
           {
             type: 'value',
-            min: -0.5,
-            max: 0.5,
-            interval: 0.05,
+            min: -1.5,
+            max: 1.5,
+            interval: 0.08,
             axisLabel: {
               show: false
             }
           }],
-          grid: { top: 40, right: 10, bottom: 59, left: 84 },
+          grid: { top: 40, right: 10, bottom: 59, left: 55 },
           series: createSeriesList(num, data.industries.wage_change)
           
 
