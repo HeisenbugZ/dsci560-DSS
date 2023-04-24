@@ -9,6 +9,11 @@
       "name": "Educational services "
     },
     {
+      "code": 4451,
+      "name": "Traveler accommodation (including hotels, motels, & bed & breakfast inns) "
+    },
+    
+    {
       "code": 5311,
       "name": "Lessors of Real Estate"
     },
@@ -19,6 +24,10 @@
     {
       "code": 5414,
       "name": "Specialized design services "
+    },
+    {
+      "code": 5418,
+      "name": "Advertising & related services "
     },
     {
       "code": 5613,

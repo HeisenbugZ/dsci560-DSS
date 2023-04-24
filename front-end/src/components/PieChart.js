@@ -22,7 +22,7 @@ function PieChart({ district }) {
           }
         })
         const option = {
-          grid: { top: 20, right: 40, bottom: 10, left: 40 },
+          grid: { top: 20, right: 20, bottom: 20, left: 20 },
           // legend: {
           //   type: 'scroll',
           //   orient: 'vertical',
@@ -56,7 +56,7 @@ function PieChart({ district }) {
   return (
     <div className='pieChart'>
       <div ref={chartRef} 
-           style={{ width: "100%", height: "100%" }}>
+           style={{ width: "92%", height: "92%" }}>
       </div>
     </div>
   );

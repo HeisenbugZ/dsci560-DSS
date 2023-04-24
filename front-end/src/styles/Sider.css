@@ -5,7 +5,7 @@
 }
 
 .recommendation {
-    height: 24%;
+    height: 40%;
     width: 100%;
     /* padding-top: 0.5rem; */
     /* padding-bottom: 0.5rem; */
@@ -18,16 +18,16 @@
 .industry {
     display: flex;
     cursor: pointer;
+    margin-bottom: 0.5rem;
 }
 
-.lineChart {
+/* .lineChart {
     height: 34%;
     width: 100%;
-    /* padding-top: 0.1rem; */
-}
+} */
 
 .pieChart {
-    height: 42%;
+    height: 60%;
     width: 100%;
     /* max-height: 100%; */
     /* max-width: 100%; */
@@ -42,17 +42,37 @@
 
 } */
 
+.selectDistrict{
+    height: 100%;
+    width: 50%;
+    margin-left: 1rem;
+
+}
+
+.linkToDashboard{
+    height: 100%;
+    width: 50%;
+    margin-right: 1rem;
+}
+
+.recTop{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    margin-top: 1rem;
+}
+
 .recHeader {
-    height: 20%;
+    height: 16%;
     font-size: 2.5vh;
-    padding-top: 0.5rem;
+    margin-top: 0.5rem;
     padding-left: 1rem;
     font-family: Tahoma;
     /* text-align: middle; */
 }
 .recContent{
-    height: 80%;
-    display: flex;
+    height: 74%;
+    /* display: flex; */
 }
 
 .recUl{
@@ -63,7 +83,7 @@
 
 .recText {
     font-family: Tahoma;
-    /* font-size: 2vh;
+    font-size: 2.2vh;
     
-    margin-left: 3rem; */
+    /* margin-left: 3rem; */
 }

@@ -24,9 +24,9 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
           <img src={goBack}
                alt='logo'
                style={{
-                  marginTop:'1.3rem',
-                  width:"40%",
-                  height:"40%",
+                  marginTop:'1.8rem',
+                  width:"30%",
+                  height:"30%",
                 }}/>
         </Link>
       </div>

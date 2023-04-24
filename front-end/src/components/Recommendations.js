@@ -22,12 +22,14 @@ function Recommendations({ district, location}) {
   
   return (
     <div className='recommendation'>
+      <div className='recTop'>
+        <h3 className='selectDistrict'>{district === "LA" ? district : 'District '+ district}{location ? `(${location})`:""}</h3>
+        <Link className='linkToDashboard' to="/dashboard">
+          <p>go to dashboard
+          </p>
+        </Link>
+      </div>
       
-      <h3>{district === "LA" ? district : 'District '+ district}{location ? `(${location})`:""}</h3>
-      <Link to="/dashboard">
-        <p>go to dashboard
-        </p>
-      </Link>
       {/* <h3 className='recHeader'>Top 5 Industries Recommendations for startup in {district === "LA" ? district : 'District '+ district}:
       </h3> */}
       <h3 className='recHeader'>Top 5 Industries Recommendations for startup:
