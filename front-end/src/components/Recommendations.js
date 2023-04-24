@@ -26,7 +26,7 @@ function Recommendations({ district, location}) {
       <div className='recTop'>
         <h3 className='selectDistrict'>
           {district === "LA" ? district : 'District '+ district}
-          {location ? `(${location})`:""}
+          {location ? ` (${location})`:""}
         </h3>
         {district === "LA" ? "":<DistrictInfo district={district} />}
         <Link className='linkToDashboard' to="/dashboard">

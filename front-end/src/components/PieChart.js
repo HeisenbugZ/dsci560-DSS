@@ -41,16 +41,18 @@ function PieChart({ district }) {
             name: "Industry",
             data: pie_data,
             type: "pie",
-            smooth: true
+            smooth: true,
+            radius: "55%",
+            center: ['55%', '50%'],
           }
         }
         chartInstance.setOption(option);
       })
     }
     chartInit();
-    return () => {
-      echarts.dispose(current);
-    };
+    // return () => {
+    //   echarts.dispose(current);
+    // };
   }, [district])
   
   return (

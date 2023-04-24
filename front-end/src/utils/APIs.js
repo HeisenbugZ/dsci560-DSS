@@ -10,18 +10,20 @@ export function API_Recommendations ( district ) {
   return base + 'recommandation?district=' + district
 };
 
-export function API_Active_Business ( district, start, end, num=null ) {
+export function API_Active_Business ( district, start, end, num=null, IndustryCode=null ) {
   return base + 'active_data?district=' + district
               + (start ? `&start=${start}` : "")
               + (end ? `&start=${end}` : "")
-              + (num ? `&num=${num}` : "");
+              + (num ? `&num=${num}` : "")
+              + (IndustryCode ? `&code=${IndustryCode}` : "");
 }
 
-export function API_Change_Ratio (district, start=null, end=null, num=null ) {
+export function API_Change_Ratio (district, start=null, end=null, num=null, IndustryCode=null ) {
   return base + "change_ratio?district=" + district 
               + (start ? `&start=${start}` : "")
               + (end ? `&start=${end}` : "")
-              + (num ? `&num=${num}` : "");
+              + (num ? `&num=${num}` : "")
+              + (IndustryCode ? `&code=${IndustryCode}` : "");
 }
 
 export function API_Prediction() {
