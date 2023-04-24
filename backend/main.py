@@ -115,6 +115,7 @@ def get_economics():
 #       "contribution_change": [-0.0175817, -0.353549, -0.410135, -0.331454, -0.174571, 0.278176, 0.398248, 0.634614, 0.0207686, 0.0444419]
 #   } }
 
+
 @app.route("/district_info")  # accept: {district: int}
 def district_info():
     query = request.args

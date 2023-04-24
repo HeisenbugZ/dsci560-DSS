@@ -89,7 +89,9 @@ def economics_sql(query: bytes) ->str:
     if ('end' in query): where += f"and date<='{query['end']}' "
     if ('num' in query): where += f"and ranky<={query['num']} "
     if ('code' in query): where += f"and industry_code={query['code']} "
-    return f"{select} {froms} {where} {order}"
+    return f"""select raw.*, name from ({select} {froms} {where} {order})
+            raw left join industry on raw.code=industry.code
+            """
 
 def api_node_sql_2(query: bytes) -> str: ...
 def api_node_sql_3(query: bytes) -> str: ...
@@ -125,7 +127,7 @@ def economics_data_process(data: Data) -> str:
     data.rename('ranky', 'rank')
     date = sorted(list(set(data["date"])))
     df = pd.DataFrame(data.values, columns=data.columns)
-    df = df.groupby(["code", "rank"]).agg(list).reset_index()
+    df = df.groupby(["code", "rank", "name"]).agg(list).reset_index()
     data = Data(df.columns, df.values)
     data.drop("date")
     return '{' + f''' "time": {json.dumps(date)},
