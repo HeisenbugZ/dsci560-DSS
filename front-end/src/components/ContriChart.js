@@ -113,8 +113,8 @@ export default function ContriChart({ industry }) {
           },
           {
             type: 'value',
-            min: -3,
-            max: 3,
+            min: -0.5,
+            max: 0.5,
             interval: 0.05,
             axisLabel: {
               show: false
