@@ -39,5 +39,13 @@ export function API_DistrictInfo (district) {
   return base + "district_info?district=" + district
 }
 
+export function API_Eco (naics, num=null, start=null, end=null) {
+  return base + "eco_data?code=" + naics
+              + (num ? `&num=${num}` : "")
+              + (start ? `&start=${start}` : "")
+              + (end ? `&start=${end}` : "")
+              
+}
+
 // openAPI
 export const OPENAI_API_KEY = "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"

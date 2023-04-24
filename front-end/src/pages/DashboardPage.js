@@ -3,6 +3,7 @@ import DashboardHeader from '../components/DashboardHeader';
 import Capacity from '../components/Capacity';
 import DashCharts from '../components/DashCharts';
 import '../styles/Dashboard.css';
+import EcoChart from '../components/EcoChart';
 
 
 export default function DashboardPage( {selectedDistrict, setSelectedDistrict} ){
@@ -36,6 +37,9 @@ export default function DashboardPage( {selectedDistrict, setSelectedDistrict} )
         </div>
 
         <div className='right-container'>
+          <EcoChart
+            industry={selectIndustry }
+          />
         </div>
 
       </div>
