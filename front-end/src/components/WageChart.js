@@ -34,12 +34,10 @@ function createSeriesList(n, change_rate) {
       data: change_rate
     });
   }
-  
-
   return series
 }
 
-function EcoChart({ industry }) {
+function WageChart({ industry }) {
 
   const chartRef = useRef(null);
 
@@ -59,13 +57,13 @@ function EcoChart({ industry }) {
             ['Industry', ...data.time],
             ...data.industries.map(industry => [
               industry.code,
-              ...industry.wages
+              ...industry.contribution
             ])
           ];
         }else{
           formattedData = [
             ['Industry', ...data.time],
-            data.industries.wages
+            data.industries.contribution
           ]
           num = 1
         }
@@ -123,7 +121,7 @@ function EcoChart({ industry }) {
             }
           }],
           grid: { top: '50%', right: '12%', bottom: '12%', left: '12%' },
-          series: createSeriesList(num, data.industries.wage_change)
+          series: createSeriesList(num, data.industries.contribution_change)
           
 
         }
@@ -139,7 +137,7 @@ function EcoChart({ industry }) {
 
   return (
     <Card>
-        <div className='ecoChart'>
+        <div className='WageChart'>
           <div ref={chartRef} style={{ height: "600px" }}></div>
         </div>
     </Card>
@@ -147,4 +145,4 @@ function EcoChart({ industry }) {
   );
 }
 
-export default EcoChart;
+export default WageChart;

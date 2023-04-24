@@ -39,8 +39,9 @@ export function API_DistrictInfo (district) {
   return base + "district_info?district=" + district
 }
 
-export function API_Eco (naics, num=null, start=null, end=null) {
-  return base + "eco_data?code=" + naics
+export function API_Eco (naics=null, num=10, start=null, end=null) {
+  return base + "eco_data?"
+              + (naics ? `&code=${naics}` : "")
               + (num ? `&num=${num}` : "")
               + (start ? `&start=${start}` : "")
               + (end ? `&start=${end}` : "")
