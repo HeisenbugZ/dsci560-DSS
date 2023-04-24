@@ -30,7 +30,7 @@ export default function DistrictInfo( { district } ) {
         <p onClick={showModal} style={{cursor: 'pointer'}}>
           &nbsp;🔍
         </p>
-        <Modal title={info.name} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title={`District ${district}`} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
           <p>{info.description}</p>
         </Modal>
       </>

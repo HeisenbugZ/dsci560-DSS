@@ -33,6 +33,19 @@ function PieChart({ district }) {
           //     return i.name
           //   })
           // },
+          title: {
+            text: 'Ratio of Top 10 Industries',
+            // subtext: '',
+            left: 'center',
+            textStyle: {
+              fontSize: 20,
+              fontStyle: "normal",
+              fontWeight: "lighter",
+              fontFamily: "Arial",
+              color: "rgba(0, 0, 0, 0.59)",
+            },
+            padding:[20,10,10,10],
+          },
           tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
