@@ -39,7 +39,7 @@ function createSeriesList(n, change_rate) {
   return series
 }
 
-function EcoChart({ industry }) {
+export default function WageChart({ industry }) {
 
   const chartRef = useRef(null);
 
@@ -146,5 +146,3 @@ function EcoChart({ industry }) {
     
   );
 }
-
-export default EcoChart;
