@@ -81,7 +81,7 @@ def get_capacity_sql(query: bytes) ->str:
 
 def economics_sql(query: bytes) ->str:
     if not ("code" in query)^("num" in query): return '{"error": "code and num should appear and only should appear one of them"}'
-    select = "select industry_code as code, date, total_qtrly_wages as wages, qtrly_contributions as contribution, wages_change_rate as wage_change, contribution_change_rate as contribution_change, ranky"
+    select = "select industry_code as code, date, total_qtrly_wages/1e6 as wages, qtrly_contributions/1e6 as contribution, wages_change_rate as wage_change, contribution_change_rate as contribution_change, ranky "
     order = "order by ranky, date"
     froms = "from economics right join total_rank on economics.industry_code=total_rank.code"
     where = f"where wages_change_rate is not null  "
