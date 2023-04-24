@@ -37,7 +37,7 @@ function createSeriesList(n, change_rate) {
   return series
 }
 
-function WageChart({ industry }) {
+export default function ContriChart({ industry }) {
 
   const chartRef = useRef(null);
 
@@ -70,7 +70,7 @@ function WageChart({ industry }) {
         console.log(data)
         const option = {
           title: {
-            text: 'wage',
+            text: 'contribution',
             left: 'center',
             // top: '43%',
           },
@@ -81,7 +81,7 @@ function WageChart({ industry }) {
             {
               show: true,
               realtime: true,
-              start: 60,
+              start: 90,
               end: 100,
               xAxisIndex: [0, 1],
               bottom: 13
@@ -89,7 +89,7 @@ function WageChart({ industry }) {
             {
               type: 'inside',
               realtime: true,
-              start: 60,
+              start: 90,
               end: 100,
               xAxisIndex: [0, 1]
             }
@@ -145,4 +145,4 @@ function WageChart({ industry }) {
   );
 }
 
-export default WageChart;
+

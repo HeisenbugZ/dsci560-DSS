@@ -83,7 +83,7 @@ function EcoChart({ industry }) {
             {
               show: true,
               realtime: true,
-              start: 60,
+              start: 90,
               end: 100,
               xAxisIndex: [0, 1],
               bottom: 13
@@ -91,7 +91,7 @@ function EcoChart({ industry }) {
             {
               type: 'inside',
               realtime: true,
-              start: 60,
+              start: 90,
               end: 100,
               xAxisIndex: [0, 1]
             }
