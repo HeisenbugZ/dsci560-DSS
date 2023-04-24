@@ -4,7 +4,17 @@ import * as echarts from "echarts";
 import { Card } from 'antd';
 import axios from 'axios';
 import { API_Active_Business } from '../utils/APIs';
+import industries from '../resource/industries.json'
 import '../styles/Dashboard.css'
+
+// const industry_options = industries.industries.map(obj => ({
+//   value: obj.code.toString(),
+//   label: obj.name
+// }));
+const industryDict = Object.fromEntries(
+  industries.industries.map(
+    ({code, name}) => [name, code]));
+
 
 function createSeriesList(n) {
   const series = [];
@@ -29,15 +39,16 @@ function createSeriesList(n) {
   return series
 }
 
-export default function DashCharts({ district }) {
+export default function DashCharts({ district, industry }) {
   const chartRef = useRef(null);
   useEffect(() => {
     const current = chartRef.current;
     const chartInit = () => {
       let chartInstance = echarts.init(chartRef.current);
-      const num = 10
-      axios.get(API_Active_Business(district,null,null,num)).then(res => {
+      const num = 11
+      axios.get(API_Active_Business(district,null,null,num,industryDict[industry])).then(res => {
         const data = res.data
+        console.log(data)
         const formattedData = [
           ['Industry', ...data.time],
           ...data.industries.map(industry => [
@@ -45,12 +56,11 @@ export default function DashCharts({ district }) {
             ...industry.active
           ])
         ];
+        console.log(formattedData)
         // console.log(formattedData)
         const option = {
           title: {
-            text: `Number of Active Business in ${district==='LA' ? 
-                                                              district 
-                                                              :'District '+district}`,
+            text: `Number of Active Business in ${district==='LA' ?  district :'District '+district}`,
             left: 'center',
             top: '43%',
           },
@@ -116,16 +126,13 @@ export default function DashCharts({ district }) {
         chartInstance.setOption(option);
       })
       
-      
-
-      
     }
     chartInit();
     return () => {
       echarts.dispose(current);
     };
     
-  }, [district])
+  }, [district, industry])
   
 
   return (

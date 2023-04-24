@@ -5,6 +5,7 @@ import '../styles/DashHeader.css'
 import goBack from '../resource/goBack.svg'
 import industries from '../resource/industries.json'
 import districts from '../resource/districts.json'
+import DistrictInfo from './DistrictInfo';
 
 const industry_options = industries.industries.map(obj => ({
     value: obj.code.toString(),
@@ -24,18 +25,19 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
           <img src={goBack}
                alt='logo'
                style={{
-                  marginTop:'1.3rem',
-                  width:"40%",
-                  height:"40%",
+                  marginTop:'1.8rem',
+                  width:"30%",
+                  height:"30%",
                 }}/>
         </Link>
       </div>
-      <div>
+      <div className='HeaderDiv'>
           <h1 className='dash-mainHeader'>Dashboard</h1>
           
       </div>
       <div className='selector'>
-      <Select
+      <DistrictInfo district={district} />
+      <Select className='selectDistrict'
             showSearch
             style={{ width: 250 }}
             // placeholder={district==='LA' ? 
@@ -52,7 +54,7 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
             onSelect={(value, label) => {setDistrict(value)}}
             options={district_options}
         />
-        <Select
+        <Select className='selectIndustry'
             showSearch
             style={{ width: 350 }}
             placeholder="All Industry"
@@ -65,7 +67,7 @@ export default function DashboardHeader({ district, setDistrict, industry, setIn
             options={industry_options}
         />
       </div>
-      <div><h2>{`${district} ${industry}`}</h2></div>
+      {/* <div><h2>{`${district} ${industry}`}</h2></div> */}
     </header>
   );
 }

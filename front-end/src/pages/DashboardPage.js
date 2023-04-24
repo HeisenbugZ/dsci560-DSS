@@ -3,6 +3,9 @@ import DashboardHeader from '../components/DashboardHeader';
 import Capacity from '../components/Capacity';
 import DashCharts from '../components/DashCharts';
 import '../styles/Dashboard.css';
+import WageChart from '../components/WageChart';
+import ContriChart from '../components/ContriChart';
+import { Card, Space } from 'antd';
 
 
 export default function DashboardPage( {selectedDistrict, setSelectedDistrict} ){
@@ -29,10 +32,26 @@ export default function DashboardPage( {selectedDistrict, setSelectedDistrict} )
         </div >
 
         <div className='middle-container'>
-          <DashCharts district={ selectedDistrict }/>
+          <DashCharts 
+            district={ selectedDistrict }
+            industry={ selectIndustry }
+          />
         </div>
 
         <div className='right-container'>
+          {/* <Space direction="vertical" size={40}> */}
+            {/* <Card> */}
+            <WageChart
+              industry={selectIndustry }
+            />
+            {/* </Card>
+            <Card> */}
+            <Space direction="vertical" size={80}></Space>
+            <ContriChart
+              industry={selectIndustry }
+            />
+            {/* </Card> */}
+          {/* </Space> */}
         </div>
 
       </div>

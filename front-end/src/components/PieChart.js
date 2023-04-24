@@ -22,7 +22,7 @@ function PieChart({ district }) {
           }
         })
         const option = {
-          grid: { top: 20, right: 40, bottom: 10, left: 40 },
+          grid: { top: 20, right: 20, bottom: 20, left: 20 },
           // legend: {
           //   type: 'scroll',
           //   orient: 'vertical',
@@ -41,22 +41,24 @@ function PieChart({ district }) {
             name: "Industry",
             data: pie_data,
             type: "pie",
-            smooth: true
+            smooth: true,
+            radius: "55%",
+            center: ['55%', '50%'],
           }
         }
         chartInstance.setOption(option);
       })
     }
     chartInit();
-    return () => {
-      echarts.dispose(current);
-    };
+    // return () => {
+    //   echarts.dispose(current);
+    // };
   }, [district])
   
   return (
     <div className='pieChart'>
       <div ref={chartRef} 
-           style={{ width: "100%", height: "100%" }}>
+           style={{ width: "92%", height: "92%" }}>
       </div>
     </div>
   );

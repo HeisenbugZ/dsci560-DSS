@@ -3,19 +3,19 @@ import axios from 'axios'
 import { Card, Space  } from 'antd';
 import { API_Capacity } from '../utils/APIs';
 import industries from '../resource/industries.json'
-import districts from '../resource/districts.json'
+// import districts from '../resource/districts.json'
 import '../styles/Dashboard.css'
 
 const industry_options = industries.industries.map(obj => ({
     value: obj.code.toString(),
     label: obj.name
 }));
-console.log(industry_options);
+// console.log(industry_options);
 
-const district_options = districts.districts.map(obj => ({
-    value: obj.district.toString(),
-    label: obj.dist_name
-}));
+// const district_options = districts.districts.map(obj => ({
+//     value: obj.district.toString(),
+//     label: obj.dist_name
+// }));
 
 
 function Capacity({ district, industry}) {
@@ -44,6 +44,17 @@ function Capacity({ district, industry}) {
     // <Card>
       <Space direction="vertical" size={40}>
       {/* <Space direction="horizontal" size={100}></Space> */}
+      <Card
+        title="Capacity for New Business: "
+        headStyle={{textAlign: 'Center'}}
+        // extra={<a href="#">More</a>}
+        style={{
+        width: 350,
+        height: 190,
+        }}
+      >
+        <h3 className='capacityNum'>{capacity}</h3>
+      </Card>
       <Card 
         title="Current Active Business: "
         headStyle={{textAlign: 'Center'}}
@@ -66,17 +77,7 @@ function Capacity({ district, industry}) {
       >
         <h3 className='capacityNum'>{predict_active}</h3>
       </Card>
-      <Card
-        title="Capacity for New Business: "
-        headStyle={{textAlign: 'Center'}}
-        // extra={<a href="#">More</a>}
-        style={{
-        width: 350,
-        height: 190,
-        }}
-      >
-        <h3 className='capacityNum'>{capacity}</h3>
-      </Card>
+      
       {/* <div>
         <h3 className='activeNum'>Current Active Business: {current_active}</h3>
         <h3 className='capacityNum'>Capacity: {capacity}</h3>
