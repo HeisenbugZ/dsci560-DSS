@@ -2,10 +2,13 @@ import React from 'react';
 
 const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
-    console.log(message);
-    if (message.includes('hello')) {
+    if ( message.includes("test")){
         actions.handleHello();
     }
+    if ( message.includes("chatgpt:")) {
+        actions.ChatGPT(message);
+    }
+    
   };
 
   return (

@@ -1,13 +1,15 @@
 import Chatbot from 'react-chatbot-kit'
 import 'react-chatbot-kit/build/main.css'
+import './ChatbotComp/chatbot.css'
 import config from './ChatbotComp/config.js';
 import MessageParser from './ChatbotComp/MessageParser.js';
 import ActionProvider from './ChatbotComp/ActionProvider.js';
 
 export default function Chatbott () {
   return (
-    <div>
+    <div style={{width:'500px'}}>
       <Chatbot
+        // style={{width:'500px'}}
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
