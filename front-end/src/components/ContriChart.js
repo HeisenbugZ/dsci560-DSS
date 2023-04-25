@@ -70,7 +70,7 @@ export default function ContriChart({ industry }) {
         console.log(data)
         const option = {
           title: {
-            text: 'Contribution & Quarterly Change Rate',
+            text: 'GDP Contribution & Quarterly Change Rate',
             left: 'center',
             // top: '1%',
           },
